@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAL-SET</title>
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBRbr_1JWw2pGTmdJvBWNjwBWlsdfG7iXE",
+            authDomain: "calset-fb8e6.firebaseapp.com",
+            projectId: "calset-fb8e6",
+            storageBucket: "calset-fb8e6.appspot.com",
+            messagingSenderId: "292309582190",
+            appId: "1:292309582190:web:a16304d7b64a36b717017f",
+            measurementId: "G-R5EFH0W7QF"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="main-page.js" defer></script>
+</head>
+<body>
+    <button id="logout-btn" onclick="SignOutPressed()">Logout</button>
+</body>
+</html>

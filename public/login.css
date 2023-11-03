@@ -1,4 +1,5 @@
 body {
+    cursor: url('assets/icons8-select-cursor-35.png'), auto;
     display: flex;
     flex-wrap: wrap;
     height: 100%;
