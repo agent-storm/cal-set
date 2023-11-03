@@ -1,0 +1,96 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #2F2235;
+    padding:0;
+    margin:0;
+}
+.main-bg{
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+    width: 80%;
+    margin-top: 10%;
+    background: #3F3244;
+    border-radius: 30px;
+    transition: 0.5s;
+}
+.main-bg:hover {
+    
+    box-shadow: 30px 30px;
+    transition: 0.5s;
+}
+.secondary-login-text {
+    transition: 0.5s;
+    color: #3F3244;
+}
+.main-bg:hover .secondary-login-text {
+    color:#DD1155;
+}
+.main-bg:hover .login-options {
+    opacity:100;
+}
+.login-text {
+    display: flex;
+    flex-direction: column;
+    height:600px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    
+}
+.login-div-text {
+    margin-left:70px;
+    font-size: 80px;
+    color: #BFC3BA;
+}
+
+.login-options {
+    display: flex;
+    opacity:0;
+    transition: opacity 0.5s;
+    width:50%;
+    height:600px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-option {
+    width:60%;
+    height:10%;
+    transition: 0.5s;
+    border-width: 0px;
+    border-radius: 20px;
+    margin:20px;
+    background-color: #A9ACA9;
+    color:#3F3244;
+}
+.login-option:hover {
+    transform: scale(1.01);
+    box-shadow: 15px 15px #2F2235;
+    background-color: #DD1155;
+}
+
+.login-option-text {
+    color:#2F2235;
+    font-weight: 800;
+    font-size:20px;
+}
+.google-login {
+    cursor:url("assets/icons8-google-50.png") 15 15, auto;
+}
+.github-login {
+    cursor:url("assets/icons8-github-50.png") 15 15, auto; ;
+}
+.facebook-login {
+    cursor:url("assets/icons8-facebook-50.png") 15 15, auto; ;
+}
+.twitter-login {
+    cursor:url("assets/icons8-twitter-50.png") 15 15, auto; ;
+}
