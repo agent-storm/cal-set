@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalSET</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBRbr_1JWw2pGTmdJvBWNjwBWlsdfG7iXE",
+            authDomain: "calset-fb8e6.firebaseapp.com",
+            projectId: "calset-fb8e6",
+            storageBucket: "calset-fb8e6.appspot.com",
+            messagingSenderId: "292309582190",
+            appId: "1:292309582190:web:a16304d7b64a36b717017f",
+            measurementId: "G-R5EFH0W7QF"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="javascript/login-stuff.js" defer></script>
+    
+</head>
+<body>
+    <div class="main-bg">
+        <div class="login-text">
+            <h1 class="login-div-text">Login to<br><span class="secondary-login-text">Begin the<br>Journey...</span></h1>
+        </div>
+        <div class="login-options">
+            <button class="login-option google-login" onclick="GoogleLoginPopup()">
+                <span class="login-option-text" >Login with Google</span>
+            </button>
+            <button class="login-option github-login" onclick="GithubLoginPopup()">
+                <span class="login-option-text">Login with Github</span>
+            </button>
+            <button class="login-option twitter-login" onclick="TwitterLoginPopup()">
+                <span class="login-option-text">Login with Twitter</span>
+            </button>
+            <button class="login-option facebook-login" onclick="FacebookLoginPopup()">
+                <span class="login-option-text">Login with Facebook</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>

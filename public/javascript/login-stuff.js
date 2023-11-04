@@ -3,7 +3,6 @@ const auth = firebase.auth();
 function GoogleLoginPopup(){
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
-    // LoggedIn();
 }
 function GithubLoginPopup(){
     const provider = new firebase.auth.GithubAuthProvider();
@@ -21,6 +20,6 @@ function FacebookLoginPopup(){
 auth.onAuthStateChanged(user => {
     if(user){
         console.log("LOGGED IN");
-        window.location = 'main-page.html';
+        window.location = 'pages/cal-set-main-page.html';
     }
 });

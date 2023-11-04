@@ -1,7 +1,9 @@
 const auth = firebase.auth();
 
-function SignOutPressed(){
+function SignOutPressed() {
+    
     console.log(auth.currentUser);
     auth.signOut();
     window.location = 'index.html';
+
 }
