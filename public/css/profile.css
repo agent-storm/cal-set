@@ -48,19 +48,17 @@ body{
     justify-content: right;
     width:50%;
 }
-
+#profile-pic {
+    height: 300px;
+}
 #scrolldown-gif {
     margin-top: 90px;
     margin-bottom: 90px;
     height: 50px;
 }
-#profile-pic {
-    height: 700px;
-}
 #lower-desc-text {
-    font-size: 30px;
+    font-size: 700px;
 }
-
 .projects-container-div {
     display: flex;
     justify-content: center;
