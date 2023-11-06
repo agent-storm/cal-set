@@ -25,6 +25,9 @@ body{
 .main-profile-bg:hover .lower-desc-text-div{
     color:#D0CFCF;
 }
+.main-profile-bg:hover #profile-pic {
+    transform: scale(1.05);
+}
 .profile-text {
     display: flex;
     flex-direction: column;
@@ -47,9 +50,11 @@ body{
     display: flex;
     justify-content: right;
     width:50%;
+    overflow: hidden;
 }
 #profile-pic {
-    height: 300px;
+    height: 700px;
+    transition: 1s;
 }
 #scrolldown-gif {
     margin-top: 90px;
@@ -57,7 +62,7 @@ body{
     height: 50px;
 }
 #lower-desc-text {
-    font-size: 700px;
+    font-size: 26px;
 }
 .projects-container-div {
     display: flex;
@@ -82,5 +87,13 @@ body{
     width: 50%;
 }
 .project-description {
+    display:flex;
+    flex-direction: column;
     width: 50%;
+}
+.calset-login-btn {
+    width:30%;
+    height: 20px;
+    background-color: aquamarine;
+    border-radius: 30px;
 }

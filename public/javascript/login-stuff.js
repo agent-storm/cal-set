@@ -1,6 +1,7 @@
 const auth = firebase.auth();
 
 function GoogleLoginPopup(){
+    console.log("Yeah");
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
 }
@@ -20,6 +21,6 @@ function FacebookLoginPopup(){
 auth.onAuthStateChanged(user => {
     if(user){
         console.log("LOGGED IN");
-        window.location = 'pages/cal-set-main-page.html';
+        window.location = "../pages/cal-set-main-page.html";
     }
 });

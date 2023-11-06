@@ -4,6 +4,6 @@ function SignOutPressed() {
     
     console.log(auth.currentUser);
     auth.signOut();
-    window.location = 'index.html';
+    window.location = '../index.html';
 
 }
