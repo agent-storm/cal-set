@@ -1,0 +1,11 @@
+{
+    "timeframe" : {
+        "one-week-btn":0,
+        "one-month-btn":0
+    },
+    "platforms" : {
+        "codechef-btn":0,
+        "codeforces-btn":0,
+        "hackerrank-btn":0
+    }
+}

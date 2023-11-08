@@ -9,9 +9,15 @@ function SignOutPressed() {
 function OptionChosen(btnId) {
     console.log("HERE");
     const Btn = document.getElementById(btnId);
-    if (Btn.style.backgroundColor != "#DD1155"){
-        Btn.style.backgroundColor = "#DD1155";
-    }
-    // console.log(Btn.style.backgroundColor);
-    
+    var style = getComputedStyle(Btn);
+    JsonReader();
+    // const obj = JSON.parse(JsonReader());
+    // console.log(obj);
+}
+function JsonReader() { 
+    fetch("../json/options.json") 
+        .then((res) => { 
+        console.log(res.json());
+        // return res.json(); 
+    });
 }
