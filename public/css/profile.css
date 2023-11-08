@@ -9,9 +9,9 @@ body{
 .main-profile-bg {
     display: flex;
     flex-direction: row;
-    margin-top:7%;
-    height: 700px;
-    width:85%;
+    margin-top:6%;
+    height: 80vh;
+    width:85vw;
     border-radius: 30px;
     background-color: #D0CFCF;
     transition: 0.5s;
@@ -37,7 +37,7 @@ body{
     display: flex;
     justify-content: left;
     align-items: center;
-    font-size: 80px;
+    font-size: 4.2vw;
     margin:20px;
     height: 50%;
 }
@@ -53,17 +53,17 @@ body{
     overflow: hidden;
 }
 #profile-pic {
-    height: 700px;
+    height: 80vh;
+    /* width:100vw; */
     transition: 1s;
 }
 #scrolldown-gif {
-    margin-top: 90px;
+    margin-top: 1.2vh;
     margin-bottom: 90px;
-    height: 50px;
+    height: 5vh;
 }
 #lower-desc-text {
-    
-    font-size: 26px;
+    font-size: 1.3vw;
 }
 .projects-container-div {
     display: flex;
@@ -80,17 +80,23 @@ body{
 }
 .projects-container {
     display: flex;
+    flex-flow: row;
     flex-direction: row;
     width:100%;
-    height: 900px;
+    height: 90vh;
 }
-.project-image {
-    width: 50%;
+.project-image-div {
+    /* width: 10vw; */
+    width:50%;
+}
+#project-image {
+    width:45vw;
 }
 .project-description {
     display:flex;
     flex-direction: column;
     width: 50%;
+    /* width: 10vw; */
 }
 .calset-login-btn {
     width:30%;

@@ -13,7 +13,7 @@ body {
 .main-bg{
     display: flex;
     flex-direction: row;
-    height: 80%;
+    height: 70vh;
     width: 80%;
     margin-top: 10%;
     background: #3F3244;
@@ -21,7 +21,6 @@ body {
     transition: 0.5s;
 }
 .main-bg:hover {
-    
     box-shadow: 30px 30px;
     transition: 0.5s;
 }
@@ -38,7 +37,7 @@ body {
 .login-text {
     display: flex;
     flex-direction: column;
-    height:600px;
+    height:65vh;
     width: 50%;
     display: flex;
     justify-content: center;
@@ -46,8 +45,8 @@ body {
     
 }
 .login-div-text {
-    margin-left:70px;
-    font-size: 80px;
+    margin-left:5vw;
+    font-size: 10vh;
     color: #BFC3BA;
 }
 
@@ -56,7 +55,7 @@ body {
     opacity:0;
     transition: opacity 0.5s;
     width:50%;
-    height:600px;
+    height:65vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -68,7 +67,7 @@ body {
     transition: 0.5s;
     border-width: 0px;
     border-radius: 20px;
-    margin:20px;
+    margin:2vh;
     background-color: #A9ACA9;
     color:#3F3244;
 }
@@ -81,17 +80,17 @@ body {
 .login-option-text {
     color:#2F2235;
     font-weight: 800;
-    font-size:20px;
+    font-size:2.3vh;
 }
 .google-login {
-    cursor:url("assets/icons8-google-50.png") 15 15, auto;
+    cursor:url("../assets/icons8-google-50.png") 15 15, auto;
 }
 .github-login {
-    cursor:url("assets/icons8-github-50.png") 15 15, auto; ;
+    cursor:url("../assets/icons8-github-50.png") 15 15, auto; ;
 }
 .facebook-login {
-    cursor:url("assets/icons8-facebook-50.png") 15 15, auto; ;
+    cursor:url("../assets/icons8-facebook-50.png") 15 15, auto; ;
 }
 .twitter-login {
-    cursor:url("assets/icons8-twitter-50.png") 15 15, auto; ;
+    cursor:url("../assets/icons8-twitter-50.png") 15 15, auto; ;
 }
