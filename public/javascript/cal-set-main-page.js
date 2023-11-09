@@ -23,6 +23,15 @@ const OptionStatus = {
 }
 function OptionChosen(section,btnId) {
     const btn = document.getElementById(btnId);
+    if(section == "timeframe"){
+        for (var id in OptionStatus["timeframe"]){
+            if(id!=btnId){
+                var tempBtn = document.getElementById(id);
+                tempBtn.style.backgroundColor = "#A9ACA9";
+                OptionStatus["timeframe"][id] = 0;
+            }
+        }
+    }
     if(OptionStatus[section][btnId] == 0){
         OptionStatus[section][btnId] = 1;
         btn.style.backgroundColor = "#DD1155";
