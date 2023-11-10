@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CalSET</title>
-    <link rel="stylesheet" href="css/profile.css">
-
+    <link rel="stylesheet" href="css/login.css">
     <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
@@ -22,35 +21,28 @@
         firebase.initializeApp(firebaseConfig);
     </script>
 
-    <script src="javascript/profile.js" defer></script>
+    <script src="javascript/login-stuff.js" defer></script>
     
 </head>
 <body>
-
-    <div class="main-profile-bg">
-        <div class="profile-text">
-            <div class="upper-name-text-div"> <h1 id="upper-name-text">Sai Srinith<br>Gujarathi</h1> </div>
-            <div class="lower-desc-text-div"><p id="lower-desc-text">&emsp;Hey, you've reached Srinith's page, I love building stuff and learning how to build stuff, please feel free to check out some of my work below.</p></div>
+    <div class="main-bg">
+        <div class="login-text">
+            <h1 class="login-div-text">Login to<br><span class="secondary-login-text">Begin the<br>Journey...</span></h1>
         </div>
-        <div class="profile-image-div">
-            <img id="profile-pic" src="assets\profile-pic.png">
-        </div>
-    </div>
-    <div class="scrolldown-gif-div">
-        <img src="assets/icons8-double-down.gif" id="scrolldown-gif">
-    </div>
-    <div class="projects-container-div">
-        <div class="project-container-title-div">
-            <h1 style="font-size: 36px;">Projects</h1>
-        </div>
-        <div class="projects-container">
-            <div class="project-image-div"><img src="assets\project-sample-pic.png" id="project-image" ></div>
-            <div class="project-description">
-                <h2>This is a sample description of the project</h2>
-                <button onclick="LoginPageSwitcher()" class="calset-login-btn">CalSET</button>
-            </div>
+        <div class="login-options">
+            <button class="login-option google-login" onclick="GoogleLoginPopup()">
+                <span class="login-option-text" >Login with Google</span>
+            </button>
+            <button class="login-option github-login" onclick="GithubLoginPopup()">
+                <span class="login-option-text">Login with Github</span>
+            </button>
+            <button class="login-option twitter-login" onclick="TwitterLoginPopup()">
+                <span class="login-option-text">Login with Twitter</span>
+            </button>
+            <button class="login-option facebook-login" onclick="FacebookLoginPopup()">
+                <span class="login-option-text">Login with Facebook</span>
+            </button>
         </div>
     </div>
-    
 </body>
 </html>
