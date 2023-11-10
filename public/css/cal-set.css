@@ -22,23 +22,14 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    /* margin-top: 2vh; */
 }
 .timeframe-options-div {
     margin-right: 2vw;
 }
-/* .platforms-options-div {
-    background-color: #A9ACA9;
-    margin:10px;
-    width: 30%;
-    height: 100%;
-    border-radius: 30px;
-} */
 .preset-options-div {
     margin-right: 2vw;
 }
 .options-div {
-    /* flex-grow: 1; */
     background-color: #60495A;
     height: 60vh;
     width: 30vw;
@@ -54,21 +45,17 @@ body{
     height: 3vh;
     width: 40vh;
     font-size: 3.5vh;
-    /* background-color: #6b5665; */
 }
 .options-buttons-list {
     display: flex;
     justify-content: center;
     align-items: center;
     align-items: flex-start;
-    /* margin: 1vh; */
     margin-top: 2vh;
-    /* height: 5vh; */
     width:40vh;
 }
 .options-list {
     list-style-type: none;
-    /* height: 20vh; */
     width: 30vw;
     margin:0px; 
     padding: 0px;
