@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="../css/cal-set.css" >
 </head>
 <body>
-    
     <div class="main-container-div">
         <div class="options-container-div">
             <div class="timeframe-options-div options-div">
@@ -34,8 +33,8 @@
                 </div>
                 <div class="options-buttons-list">
                     <ul class="timeframe-options-list options-list">
-                        <li class="timeframe-item options-list-item"><button class="option-button" id ="one-week-btn" onclick="OptionChosen('timeframe','one-week-btn')">ONE WEEK</button></li>
-                        <li class="timeframe-item options-list-item"><button class="option-button" id ="one-month-btn" onclick="OptionChosen('timeframe','one-month-btn')">ONE MONTH</button></li>
+                        <li class="timeframe-item options-list-item"><div class="list-item-div"><button class="option-button" id ="one-week-btn" onclick="OptionChosen('timeframe','one-week-btn')">ONE WEEK</button></div></li>
+                        <li class="timeframe-item options-list-item"><div class="list-item-div"><button class="option-button" id ="one-month-btn" onclick="OptionChosen('timeframe','one-month-btn')">ONE MONTH</button></div></li>
                         <!-- <li class="timeframe-item options-list-item"><button class="option-button">WEEK</button></li> -->
                         <!-- <li class="timeframe-item"><button>2WEEK</button></li> -->
                     </ul>
@@ -48,24 +47,22 @@
                 </div>
                 <div class="options-buttons-list">
                     <ul class="platform-options-list options-list">
-                        <li class="platform-item options-list-item"><button class="option-button" id="codechef-btn" onclick="OptionChosen('platform','codechef-btn')">CodeChef</button></li>
-                        <li class="platform-item options-list-item"><button class="option-button" id="codeforces-btn" onclick="OptionChosen('platform','codeforces-btn')">CodeForces</button></li>
-                        <li class="platform-item options-list-item"><button class="option-button" id="hackerrank-btn" onclick="OptionChosen('platform','hackerrank-btn')">Hacker Rank</button></li>
-                        <li class="platform-item options-list-item"><button class="option-button" id="gfg-btn" onclick="OptionChosen('platform','gfg-btn')">Geeks for Geeks</button></li>
+                        <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="codechef-btn" onclick="OptionChosen('platform','codechef-btn')">CodeChef</button></div></li>
+                        <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="codeforces-btn" onclick="OptionChosen('platform','codeforces-btn')">CodeForces</button></div></li>
+                        <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="leetcode-btn" onclick="OptionChosen('platform','leetcode-btn')">LeetCode</button></div></li>
+                        <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="gfg-btn" onclick="OptionChosen('platform','gfg-btn')">Geeks for Geeks</button></div></li>
                     </ul>
                 </div>
             </div>
-
-
+            
             <div class="preset-options-div options-div">
                 <div class="options-title">
                     Presets
                 </div>
                 <div class="options-buttons-list">
                     <ul class="preset-options-list options-list">
-                        <li class="preset-item options-list-item"><button class="option-button" id="codeforces-preset-btn" onclick="OptionChosen('preset','codeforces-preset-btn')">CodeForces Full</button></li>
-                        <li class="preset-item options-list-item"><button class="option-button" id="codechef1w-preset-btn" onclick="OptionChosen('preset','codechef1w-preset-btn')">Codechef 1 Week</button></li>
-                        <li class="preset-item options-list-item"><button class="option-button" id="codechef-full-preset-btn" onclick="OptionChosen('preset','codechef-full-preset-btn')">Codechef Full</button></li>
+                        <li class="preset-item options-list-item"><div class="list-item-div"><button class="option-button" id="codeforces-preset-btn" onclick="OptionChosen('preset','codeforces-preset-btn')">CodeForces Full</button></div></li>
+                        <li class="preset-item options-list-item"><div class="list-item-div"><button class="option-button" id="codechef1w-preset-btn" onclick="OptionChosen('preset','codechef1w-preset-btn')">Codechef 1 Week</button></div></li>
                         <!-- <li class="preset-item options-list-item"><button class="option-button">WEEK</button></li> -->
                     </ul>
                 </div>
@@ -76,7 +73,7 @@
             <div class="action-discription-div">
                 <p class="action-discription">  This is where the short sescription of the option will be persented.</p>
             </div>
-            <button class="go-btn">GO!</button>
+            <button class="go-btn" onclick="ScrappingInit()">GO!</button>
         </div>
     </div>
     <!-- <h1>This is just a test site, I will be developing this page now, click the logout button below to go back to the login page, please try to login again to check if its working consistantly<br>Thank you</h1> -->
