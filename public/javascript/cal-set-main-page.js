@@ -40,7 +40,7 @@ function OptionChosen(section,btnId) {
         OptionStatus[section][btnId] = 0;
         btn.style.backgroundColor = "#A9ACA9";
     }
-    console.log(OptionStatus);
+    // console.log(OptionStatus);
 }
 
 function ScrappingInit() {
@@ -57,7 +57,7 @@ function ScrappingInit() {
     for(let id  in OptionStatus["timeframe"]) {
         if(OptionStatus["timeframe"][id] == 1) time_frame = id;
     }
-    console.log(time_frame);
+    // console.log(time_frame);
     if(time_frame != ""){
         let days_to_add
         if(time_frame == "one-week-btn") days_to_add = 7;
@@ -74,11 +74,11 @@ function ScrappingInit() {
         }
     }
     console.log(platforms_selected);
-    console.log(start_gte,end_lte);
+    // console.log(start_gte,end_lte);
     let res = new Array();
     platforms_selected.forEach((id)=>{
         resource_id = resource_id_json[id.replace("-btn","")];
-        console.log(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`);
+        // console.log(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`);
         fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`)}`)
         .then(response => {
             if (response.ok) return response.json();
@@ -93,7 +93,7 @@ function ScrappingInit() {
     });
     console.log(res);
     console.log("Scrap Finished!");
-    const div_ = document.getElementById("test1-div");
-    console.log(div_);
+    // const div_ = document.getElementById("test1-div");
+    // // console.log(div_);
 
 }
