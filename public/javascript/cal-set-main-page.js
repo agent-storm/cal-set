@@ -78,7 +78,6 @@ function ScrappingInit() {
     let res = new Array();
     platforms_selected.forEach((id)=>{
         resource_id = resource_id_json[id.replace("-btn","")];
-        // console.log(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`);
         fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`)}`)
         .then(response => {
             if (response.ok) return response.json();
@@ -91,9 +90,8 @@ function ScrappingInit() {
             });
         });
     });
+    // window.location = "../pages/result-page.html";
     console.log(res);
     console.log("Scrap Finished!");
-    // const div_ = document.getElementById("test1-div");
-    // // console.log(div_);
-
-}
+    alert("Please open the console using Ctrl+Shift+j and you can find the results there. Thank you.")
+}   
