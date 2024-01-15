@@ -1,7 +1,6 @@
 const auth = firebase.auth();
 
 function GoogleLoginPopup(){
-    console.log("Yeah");
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
 }

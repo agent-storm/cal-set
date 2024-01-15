@@ -63,6 +63,9 @@ body{
     border: none;
     transition: 1s;
 }
+.contest-link {
+    text-decoration:none;
+}
 .contest-details-button:hover {
     cursor: url('../assets/icons8-select-cursor-35.png'), auto;
     box-shadow: 8px 8px;

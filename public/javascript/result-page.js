@@ -1,22 +1,36 @@
 
-// let list_item = `<li class=\"contest-list-item\"><button class=\"contest-details-button\"><span class=\"platform-name contest-details\">${}</span> <span class=\"contest-name contest-details\">${}</span> <span class=\"contest-date-time contest-details\">${}</span> <span class=\"contest-duration contest-details\">${}</span></button></li>`;
+// let list_item = `<li class=\"contest-list-item\"><button class=\"contest-details-button\" ><span class=\"platform-name contest-details\">${}</span> <span class=\"contest-name contest-details\">${}</span> <span class=\"contest-date-time contest-details\">${}</span> <span class=\"contest-duration contest-details\">${}</span></button></li>`;
 let all_list_items = "";
 let contestList = "";
 let contests = JSON.parse(sessionStorage.getItem("response"));
 console.log(Object.values(contests));
+const data = [
+    ["platform_name", "contest_name", "contest_duration","contest_date", "contest_time", "contest_link"]
+  ];
 Object.values(contests).forEach((contest)=> {
     let platform_name = (contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1);
     let contest_name = contest["event"];
-    const utcTimestamp = new Date(contest["start"]);
-    const contest_time_str = new Date(utcTimestamp.getTime() + (5.5 * 60 * 60 * 1000));
-    const contest_time = (contest_time_str.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })).replace(","," @");
+    let utcTimestamp = new Date(contest["start"]);
+    let contest_time_str = new Date(utcTimestamp.getTime() + (5.5 * 60 * 60 * 1000));
+    let contest_time = (contest_time_str.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })).replace(","," @");
     let contest_duration = parseInt(contest["duration"])/60 + " mins";
-    let list_item = `<li class=\"contest-list-item\"><button class=\"contest-details-button\"><span class=\"platform-name contest-details\">${platform_name}</span> <span class=\"contest-name contest-details\">${contest_name}</span> <span class=\"contest-date-time contest-details\">${contest_time}</span> <span class=\"contest-duration contest-details\">${contest_duration}</span></button></li>`;
+    let list_item = `<li class=\"contest-list-item\"><a target="_blank" href=\"${contest["href"]}\" class=\"contest-link\"><button class=\"contest-details-button\"><span class=\"platform-name contest-details\">${platform_name}</span> <span class=\"contest-name contest-details\">${contest_name}</span> <span class=\"contest-date-time contest-details\">${contest_time}</span> <span class=\"contest-duration contest-details\">${contest_duration}</span></button></li>`;
     all_list_items += list_item;
+    data.push([platform_name,contest_name,contest_time.split("@")[0],contest_time.split("@")[1],contest_duration,contest["href"]]);
 });
-console.log(all_list_items);
+// console.log(all_list_items);
+console.log(data);
 let ul = document.getElementById("contest-list");
 ul.innerHTML = all_list_items;
+
+
+function ScheduleDownload() {
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.aoa_to_sheet(data);
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Contests");
+    XLSX.writeFile(workbook, 'contest_data.xlsx');
+}
+
 
 // <!-- Add this script tag to include the Google API library -->
 // <script async defer src="https://apis.google.com/js/api.js" onload="initClient()"></script>
