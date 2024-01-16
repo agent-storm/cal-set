@@ -40,12 +40,28 @@ function OptionChosen(section,btnId) {
         OptionStatus[section][btnId] = 0;
         btn.style.backgroundColor = "#A9ACA9";
     }
-    // console.log(OptionStatus);
+    DescUpdate();
+    
 }
-
+function DescUpdate() {
+    let time_chosen;
+    let platforms_chosen = [];
+    for (var id in OptionStatus["timeframe"]){
+        if(OptionStatus["timeframe"][id] == 1){
+            time_chosen = id.replace("-btn","");
+        }
+    }
+    for (var id in OptionStatus["platform"]){
+        if(OptionStatus["platform"][id] == 1){
+            platforms_chosen.push(id.replace("-btn",""));
+        }
+    }
+    let desc = `You have chosen the platforms <u>${platforms_chosen}</u> for the timeframe <u>${time_chosen}</u>`;
+    let desc_box = document.getElementById("action-discription");
+    desc_box.innerHTML = "";
+    desc_box.innerHTML = desc;
+}
 function ScrappingInit() {
-    console.log("Here@scrappinginit");
-    // sessionStorage.clear();
     var start_gte, end_lte, resource_id;
     let resource_id_json = {
         "codechef": 2,
@@ -99,14 +115,8 @@ function ScrappingInit() {
                 });
             });
             let str = JSON.stringify(res);
-            // console.log(res, str);
             sessionStorage.setItem("response", str);
             window.location = "../pages/result-page.html";
-            // console.log(JSON.parse(sessionStorage.getItem("response")));
-            // sessionStorage.clear(); // Note: Removed this line, as you want to retrieve data later
         })
         .catch(error => console.error('Error fetching data:', error));
-    // console.log(sessionStorage.getItem("response"));
-    // sessionStorage.clear();
-    // window.location = "../pages/result-page.html";
 }

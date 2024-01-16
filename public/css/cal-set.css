@@ -32,7 +32,7 @@ body{
     flex-direction: column;
     background-color: #60495A;
     height: 95%;
-    width: 100%;
+    width: 30%;
     border-radius: 30px;
     margin:1vw;
 }
@@ -133,7 +133,38 @@ body{
     background-color: #DD1155;
 }
 @media (max-width:1000px) {
+    .main-container-div {
+        height: 100%;
+    }
     .options-container-div {
+        height: 100%;
         flex-direction: column;
+        overflow: scroll;
+    }
+    .options-div {
+        width:95%;
+        margin-bottom: 2vh;
+    }
+    .desc-btn-container-div {
+        flex-direction: column;
+        height:40vh;
+        /* width:95%; */
+        justify-content: center;
+        align-items: center;
+    }
+    .action-discription-div {
+        height:90%;
+        width: 99%;
+        word-wrap: break-word;
+        text-align: center;
+    }
+    .action-discription {
+        height: 90%;
+        width: 90%;
+        text-align: center;
+    }
+    .go-btn {
+        height: 20vh;
+        width:95%;
     }
 }

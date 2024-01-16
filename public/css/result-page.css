@@ -118,3 +118,52 @@ body{
     background-color: #da1154;
     color: black;
 }
+
+@media (max-width:1000px) {
+    .main-container-div {
+        height: 90vh;
+        margin-top: 2vh;
+    }
+    .content-div {
+        width:100%;
+    }
+    .contest-heading-text {
+        width:100%;
+        font-size: 19vw;
+        text-align: center;
+    }
+    .contests-list-div {
+        margin-bottom: 1vh;
+    }
+    .contest-list {
+        padding: 2vw;
+        height:100%;
+    }
+    .contest-list-item {
+        height:10vh;
+    }
+    .contest-link {
+        height:100%;
+    }
+
+    .contest-details-button {
+        flex-direction: column;
+        height:100%;
+        margin-top:1vh;
+    }
+    .contest-details {
+        font-size: 4vw;
+        width:100%;
+        text-align: center;
+    }
+    .options-div {
+        height: 15vh;
+        flex-direction: column;
+    }
+    .option-button {
+        height: 50%;
+        width: 100%;
+        font-size: 4vw;
+    }
+
+}

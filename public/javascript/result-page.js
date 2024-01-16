@@ -3,7 +3,6 @@
 let all_list_items = "";
 let contestList = "";
 let contests = JSON.parse(sessionStorage.getItem("response"));
-console.log(Object.values(contests));
 const data = [
     ["platform_name", "contest_name", "contest_duration","contest_date", "contest_time", "contest_link"]
   ];
@@ -18,8 +17,7 @@ Object.values(contests).forEach((contest)=> {
     all_list_items += list_item;
     data.push([platform_name,contest_name,contest_time.split("@")[0],contest_time.split("@")[1],contest_duration,contest["href"]]);
 });
-// console.log(all_list_items);
-console.log(data);
+
 let ul = document.getElementById("contest-list");
 ul.innerHTML = all_list_items;
 
@@ -28,9 +26,14 @@ function ScheduleDownload() {
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.aoa_to_sheet(data);
     XLSX.utils.book_append_sheet(workbook, worksheet, "Contests");
-    XLSX.writeFile(workbook, 'contest_data.xlsx');
+    let  d = new Date();
+    XLSX.writeFile(workbook, `contests_data_${d.toLocaleDateString()+"_"+(d.toLocaleTimeString()).replace(" ","_")}.xlsx`);
+
 }
 
+function CalanderAddition() {
+    alert("Still working on that 😅");
+}
 
 // <!-- Add this script tag to include the Google API library -->
 // <script async defer src="https://apis.google.com/js/api.js" onload="initClient()"></script>
