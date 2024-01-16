@@ -109,9 +109,7 @@ body{
     align-items: center;
 }
 .action-discription {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
     margin:1.3vh;
     width:100%;
     height: 90%;
@@ -169,5 +167,6 @@ body{
     .go-btn {
         height: 20vh;
         width:95%;
+        font-size: 15vw;
     }
 }
