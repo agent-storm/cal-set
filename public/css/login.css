@@ -94,3 +94,34 @@ body {
 .twitter-login {
     cursor:url("../assets/icons8-twitter-50.png") 15 15, auto; ;
 }
+@media (max-width:1000px) {
+    .main-bg {
+        /* background-color: #DD1155; */
+        flex-direction: column;
+        height: 90vh;
+    }
+    .login-div-text {
+        font-size: 15vw;
+        opacity: 100;
+    }
+    .secondary-login-text {
+        font-size: 15vw;
+        opacity: 100;
+        color:#DD1155;
+    }
+    .login-options {
+        height: 40vh;
+        width:100%;
+        opacity: 100;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .login-option {
+        height: 25%;
+        width: 95%;
+        margin: 3vw;
+        /* margin-left: 3vw;
+        margin-right: 3vw; */
+    }
+}
