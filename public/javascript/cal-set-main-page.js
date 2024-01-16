@@ -116,6 +116,7 @@ function ScrappingInit() {
             });
             let str = JSON.stringify(res);
             sessionStorage.setItem("response", str);
+            go_button.innerHTML = "GO!";
             window.location = "../pages/result-page.html";
         })
         .catch(error => console.error('Error fetching data:', error));
