@@ -1,11 +1,10 @@
-
 // let list_item = `<li class=\"contest-list-item\"><button class=\"contest-details-button\" ><span class=\"platform-name contest-details\">${}</span> <span class=\"contest-name contest-details\">${}</span> <span class=\"contest-date-time contest-details\">${}</span> <span class=\"contest-duration contest-details\">${}</span></button></li>`;
 let all_list_items = "";
 let contestList = "";
 let contests = JSON.parse(sessionStorage.getItem("response"));
 const data = [
     ["platform_name", "contest_name", "contest_duration","contest_date", "contest_time", "contest_link"]
-  ];
+];
 Object.values(contests).forEach((contest)=> {
     let platform_name = (contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1);
     let contest_name = contest["event"];
@@ -15,7 +14,8 @@ Object.values(contests).forEach((contest)=> {
     let contest_duration = parseInt(contest["duration"])/60 + " mins";
     let list_item = `<li class=\"contest-list-item\"><a target="_blank" href=\"${contest["href"]}\" class=\"contest-link\"><button class=\"contest-details-button\"><span class=\"platform-name contest-details\">${platform_name}</span> <span class=\"contest-name contest-details\">${contest_name}</span> <span class=\"contest-date-time contest-details\">${contest_time}</span> <span class=\"contest-duration contest-details\">${contest_duration}</span></button></li>`;
     all_list_items += list_item;
-    data.push([platform_name,contest_name,contest_time.split("@")[0],contest_time.split("@")[1],contest_duration,contest["href"]]);
+    let contest_link = contest["href"];
+    data.push([platform_name,contest_name,contest_time.split("@")[0],contest_time.split("@")[1],contest_duration,contest_link]);
 });
 
 let ul = document.getElementById("contest-list");
@@ -31,71 +31,108 @@ function ScheduleDownload() {
 
 }
 
-function CalanderAddition() {
-    alert("Still working on that 😅");
+
+
+// Google API stuff (still working on it)
+
+const CLIENT_ID = '292309582190-1g3mul71cj6fkodcho4mj2e875pp3cj8.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyBRbr_1JWw2pGTmdJvBWNjwBWlsdfG7iXE';
+
+let tokenClient;
+let gapiInited = false;
+let gisInited = false;
+
+const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
+
+
+
+function gapiLoaded() {
+    gapi.load('client', initializeGapiClient);
+}
+async function initializeGapiClient() {
+    await gapi.client.init({
+      apiKey: API_KEY,
+      discoveryDocs: [DISCOVERY_DOC],
+    });
+    gapiInited = true;
+  }
+
+function gisLoaded() {
+    tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: '', // defined later
+    });
+    gisInited = true;
 }
 
-// <!-- Add this script tag to include the Google API library -->
-// <script async defer src="https://apis.google.com/js/api.js" onload="initClient()"></script>
+function handleAuthClick() {
+    tokenClient.callback = async (resp) => {
+      if (resp.error !== undefined) {
+        throw (resp);
+      }
+      console.log("Authentication done");
+      await CreateEvents();
+    };
 
-// <!-- Your existing HTML and JS code -->
+    if (gapi.client.getToken() === null) {
+      // Prompt the user to select a Google Account and ask for consent to share their data
+      // when establishing a new session.
+      tokenClient.requestAccessToken({prompt: 'consent'});
+    } else {
+      // Skip display of account chooser and consent dialog for an existing session.
+      tokenClient.requestAccessToken({prompt: ''});
+    }
+}
 
-// <script>
-// function initClient() {
-//   // Initialize the Google API client library
-//   gapi.client.init({
-//     apiKey: 'YOUR_API_KEY',
-//     clientId: 'YOUR_CLIENT_ID',
-//     discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"],
-//     scope: "https://www.googleapis.com/auth/calendar.events",
-//   });
+
+async function CreateEvents() {
+    console.log("EventCreator");
+    const event = {
+        'summary': 'Google I/O 2015',
+        'location': '800 Howard St., San Francisco, CA 94103',
+        'description': 'A chance to hear more about Google\'s developer products.',
+        'start': {
+          'dateTime': '2015-05-28T09:00:00-07:00',
+          'timeZone': 'America/Los_Angeles'
+        },
+        'end': {
+          'dateTime': '2015-05-28T17:00:00-07:00',
+          'timeZone': 'America/Los_Angeles'
+        },
+        'recurrence': [
+          'RRULE:FREQ=DAILY;COUNT=2'
+        ],
+        'attendees': [
+          {'email': 'lpage@example.com'},
+          {'email': 'sbrin@example.com'}
+        ],
+        'reminders': {
+          'useDefault': false,
+          'overrides': [
+            {'method': 'email', 'minutes': 24 * 60},
+            {'method': 'popup', 'minutes': 10}
+          ]
+        }
+      };
+      
+      const request = gapi.client.calendar.events.insert({
+        'calendarId': 'primary',
+        'resource': event
+      });
+      
+      request.execute(function(event) {
+        console.log('Event created: ' + event.htmlLink);
+      });
+}
+
+// async function AddToCalendar() {
+//     console.log(gapi.auth2.getAuthInstance());
+//     if(gapiInited && gisInited) {
+//         gapi.auth2.getAuthInstance().signIn().then(function () {
+//             console.log('User signed in.');
+//             // You can now make API requests.
+//           });
+//     }
 // }
-
-// function authorizeAndCreateEvent(platformName, contestName, contestTime, contestDuration) {
-//   // Use OAuth to authorize the user
-//   gapi.auth2.getAuthInstance().signIn().then(() => {
-//     // Use the Google Calendar API to create an event
-//     gapi.client.calendar.events.insert({
-//       'calendarId': 'primary',
-//       'resource': {
-//         'summary': `${platformName} - ${contestName}`,
-//         'description': `Contest details: ${platformName} - ${contestName}`,
-//         'start': {
-//           'dateTime': contestTime,
-//           'timeZone': 'Asia/Kolkata',
-//         },
-//         'end': {
-//           'dateTime': calculateEndTime(contestTime, contestDuration),
-//           'timeZone': 'Asia/Kolkata',
-//         },
-//       },
-//     }).then(response => {
-//       console.log('Event created:', response.result);
-//       alert('Event created successfully!');
-//     }).catch(error => {
-//       console.error('Error creating event:', error);
-//       alert('Error creating event. Please try again.');
-//     });
-//   });
-// }
-
-// function calculateEndTime(startTime, duration) {
-//   const start = new Date(startTime);
-//   const durationInMinutes = parseInt(duration);
-//   const endTime = new Date(start.getTime() + durationInMinutes * 60 * 1000);
-//   return endTime.toISOString();
-// }
-
-// // Continue with your existing code to create list items
-
-// // Example usage inside your loop
-// // Add a button to trigger the event creation
-// let list_item = `<li class=\"contest-list-item\">
-//   <button class=\"contest-details-button\" onclick=\"authorizeAndCreateEvent('${platform_name}', '${contest_name}', '${contest_time_str.toISOString()}', '${contest_duration}')\">
-//     <!-- Your existing span elements -->
-//   </button>
-// </li>`;
-// all_list_items += list_item;
-
-// // Set innerHTML as before
-// </script>
