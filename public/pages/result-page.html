@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="../css/result-page.css" >
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
     <link rel="icon" type="image/x-icon" href="../assets/icon-512-maskable.png">
-    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+    
 </head>
 <body>
     <div class="main-container-div">
@@ -20,9 +19,11 @@
         </div>
         <div class="options-div content-div">
             <button class="option-button" id="download-btn" onclick="ScheduleDownload()">Download Schedule</button>
-            <button class="option-button" onclick="handleAuthClick()">Add to Calander</button>
+            <button class="option-button" onclick="CreateEvents()">Add to Calander</button>
         </div>
     </div>
     <script src="../javascript/result-page.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 </body>
 </html>
