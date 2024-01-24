@@ -20,6 +20,7 @@ function FacebookLoginPopup(){
 auth.onAuthStateChanged(user => {
     if(user){
         console.log("LOGGED IN");
-        window.location = "../pages/cal-set-main-page.html";
+        console.log(window.location.pathname);
+        window.location = "pages/cal-set-main-page.html";
     }
 });

@@ -17,7 +17,6 @@ Object.values(contests).forEach((contest)=> {
     let contest_link = contest["href"];
     data.push([platform_name,contest_name,contest_time.split("@")[0],contest_time.split("@")[1],contest_duration,contest_link]);
 });
-console.log(data);
 let ul = document.getElementById("contest-list");
 ul.innerHTML = all_list_items;
 
@@ -89,17 +88,19 @@ function handleAuthClick() {
 
 async function CreateEvents() {
     console.log("EventCreator");
-    data.slice(1,).forEach((contest)=>{
+    Object.values(contests).forEach((contest)=>{
+        // console.log(contest);
+
         const event = {
-            'summary': `${contest}`,
+            'summary': `${(contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1)}-${contest["event"]}`,
             'location': '',
-            'description': 'This is to check if events can be added to clients Gmail.',
+            'description': `Link:${contest["href"]}, Duration: ${parseInt(contest["duration"])/60 + " mins"}`,
             'start': {
-              'dateTime': '2024-01-25T00:00:00+05:30', // Adjusted for Indian Timezone (IST)
+              'dateTime': `${contest["start"]}+05:30`, // Adjusted for Indian Timezone (IST)
               'timeZone': 'Asia/Kolkata'
             },
             'end': {
-              'dateTime': '2024-01-26T00:00:00+05:30', // Adjusted for Indian Timezone (IST)
+              'dateTime': `${contest["end"]}+05:30`, // Adjusted for Indian Timezone (IST)
               'timeZone': 'Asia/Kolkata'
             },
             'recurrence': [
@@ -108,20 +109,19 @@ async function CreateEvents() {
             'reminders': {
               'useDefault': false,
               'overrides': [
-                {'method': 'email', 'minutes': 24 * 60},
-                {'method': 'popup', 'minutes': 10}
+                // {'method': 'email', 'minutes': 24 * 60},
+                {'method': 'popup', 'minutes': 30}
               ]
             }
           };
-          
-          const request = gapi.client.calendar.events.insert({
-            'calendarId': 'primary',
-            'resource': event
-          });
-          
-          request.execute(function(event) {
-            console.log('Event created: ' + event.htmlLink);
-          });
+        // console.log(event);
+        const request = gapi.client.calendar.events.insert({
+          'calendarId': 'primary',
+          'resource': event
+        });
+        request.execute(function(event) {
+          console.log('Event created: ' + event.htmlLink);
+        });
     });
 }
 
