@@ -89,18 +89,29 @@ function handleAuthClick() {
 async function CreateEvents() {
     console.log("EventCreator");
     Object.values(contests).forEach((contest)=>{
-        // console.log(contest);
+        const startDate = new Date(contest["start"] + "Z");
+        const endDate = new Date(contest["end"] + "Z");
+        const indianTimeZone = "Asia/Kolkata";
+        const startDateString = startDate.toLocaleString("en-IN", { timeZone: indianTimeZone,hour12: false});
+        const endDateString = endDate.toLocaleString("en-IN", { timeZone: indianTimeZone,hour12: false});
+
+        function DateFormator(date) {
+          let splitter = date.split(", ");
+          let dates = splitter[0].split("/");
+          let Finaldate = dates[2]+"-"+dates[1]+"-"+dates[0]+"T"+splitter[1];
+          return Finaldate;
+        }
 
         const event = {
             'summary': `${(contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1)}-${contest["event"]}`,
             'location': '',
             'description': `Link:${contest["href"]}, Duration: ${parseInt(contest["duration"])/60 + " mins"}`,
             'start': {
-              'dateTime': `${contest["start"]}+05:30`, // Adjusted for Indian Timezone (IST)
+              'dateTime': `${DateFormator(startDateString)}`, // Adjusted for Indian Timezone (IST)
               'timeZone': 'Asia/Kolkata'
             },
             'end': {
-              'dateTime': `${contest["end"]}+05:30`, // Adjusted for Indian Timezone (IST)
+              'dateTime': `${DateFormator(endDateString)}`, // Adjusted for Indian Timezone (IST)
               'timeZone': 'Asia/Kolkata'
             },
             'recurrence': [
@@ -114,7 +125,7 @@ async function CreateEvents() {
               ]
             }
           };
-        // console.log(event);
+        console.log(event);
         const request = gapi.client.calendar.events.insert({
           'calendarId': 'primary',
           'resource': event
@@ -123,5 +134,6 @@ async function CreateEvents() {
           console.log('Event created: ' + event.htmlLink);
         });
     });
+    alert("Contests added to your account successfully, please check and verify, thank you for using the App.");
 }
 
