@@ -34,8 +34,8 @@ function ScheduleDownload() {
 
 // Google API stuff (still working on it)
 
-const CLIENT_ID = '292309582190-1g3mul71cj6fkodcho4mj2e875pp3cj8.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyBRbr_1JWw2pGTmdJvBWNjwBWlsdfG7iXE';
+const CLIENT_ID = '';
+const API_KEY = '';
 
 let tokenClient;
 let gapiInited = false;
