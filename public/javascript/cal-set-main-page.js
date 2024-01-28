@@ -93,8 +93,10 @@ function ScrappingInit() {
     let go_button = document.getElementById("go-btn");
     go_button.innerHTML = "<img src=\"../assets/icons8-sand-timer-unscreen.gif\">";
 
-    let fetchPromises = platforms_selected.map((id) => {
+    let fetchPromises = platforms_selected.map((id) => { //`https://api.allorigins.win/get?url=${encodeURIComponent(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`)}
         resource_id = resource_id_json[id.replace("-btn", "")];
+
+
         return fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`)}`)
             .then(response => {
                 if (response.ok) return response.json();
@@ -103,6 +105,7 @@ function ScrappingInit() {
             .then(data => JSON.parse(data.contents))
             .then(jsonData => jsonData.objects);
     });
+
 
     Promise.all(fetchPromises)
         .then(results => {
