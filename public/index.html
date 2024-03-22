@@ -4,44 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CalSET</title>
-    <link rel="stylesheet" href="css/login.css">
-    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
-    <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyBRbr_1JWw2pGTmdJvBWNjwBWlsdfG7iXE",
-            authDomain: "calset-fb8e6.firebaseapp.com",
-            projectId: "calset-fb8e6",
-            storageBucket: "calset-fb8e6.appspot.com",
-            messagingSenderId: "292309582190",
-            appId: "1:292309582190:web:a16304d7b64a36b717017f",
-            measurementId: "G-R5EFH0W7QF"
-        };
-        firebase.initializeApp(firebaseConfig);
-    </script>
-    <script src="javascript/login-stuff.js" defer></script>
-    <link rel="icon" type="image/x-icon" href="/assets/icon-512-maskable.png">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+    <script src="javascript\index.js"></script>
 </head>
 <body>
-    <div class="main-bg">
-        <div class="login-text">
-            <h1 class="login-div-text">Login to<br><span class="secondary-login-text">Begin the<br>Journey...</span></h1>
-        </div>
-        <div class="login-options">
-            <button class="login-option google-login" onclick="GoogleLoginPopup()">
-                <span class="login-option-text" >Login with Google</span>
-            </button>
-            <button class="login-option github-login" onclick="GithubLoginPopup()">
-                <span class="login-option-text">Login with Github</span>
-            </button>
-            <button class="login-option twitter-login" onclick="TwitterLoginPopup()">
-                <span class="login-option-text">Login with Twitter</span>
-            </button>
-            <button class="login-option facebook-login" onclick="FacebookLoginPopup()">
-                <span class="login-option-text">Login with Facebook</span>
-            </button>
+    <div class="main-container-div">
+        <div class="content-container-div">
+            <div class="title-div">
+                <h1 class="title-text">CalSET</h1>
+                <div class="next-page-btn-div">
+                    <button class="calset-page-button" onclick="CalsetPage()">Go to Calset</button>
+                </div>
+            </div>
+            <div class="desc-div">
+                <h2 class="secondary-text">Your hassle of remembering all the contest timings end here.</h2>
+                <!-- <h3 class="description-text">CalSet is a webapp that can get the list of all the contests from all your favourite coding platforms and let you add them to your google calendar.</h3> -->
+            </div>
+            
         </div>
     </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyAVu__PBcgl0Wn2UmUBI6vbjsVQJG1FY_0",
+          authDomain: "cal-set.firebaseapp.com",
+          projectId: "cal-set",
+          storageBucket: "cal-set.appspot.com",
+          messagingSenderId: "482704809296",
+          appId: "1:482704809296:web:5b249b4efa878d53dfe055",
+          measurementId: "G-V0G9LK9J12"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 </body>
 </html>

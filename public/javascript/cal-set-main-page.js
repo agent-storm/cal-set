@@ -1,4 +1,6 @@
-const auth = firebase.auth();
+
+
+
 function SignOutPressed() {
     console.log(auth.currentUser);
     auth.signOut();
@@ -7,7 +9,9 @@ function SignOutPressed() {
 const OptionStatus = {
     "timeframe" : {
         "one-week-btn":0,
-        "one-month-btn":0
+        "one-month-btn":0,
+        "two-week-btn":0
+
     },
     "platform" : {
         "codechef-btn":0,
@@ -76,7 +80,10 @@ function ScrappingInit() {
     }
 
     if (time_frame != "") {
-        let days_to_add = (time_frame == "one-week-btn") ? 7 : 30;
+        let days_to_add;
+        if(time_frame == "one-week-btn") days_to_add = 7;
+        else if (time_frame == "one-month-btn") days_to_add = 30;
+        else if (time_frame == "two-week-btn") days_to_add = 14;
         let date_ = new Date();
         start_gte = date_.toISOString();
         date_.setDate(date_.getDate() + days_to_add);
@@ -95,8 +102,6 @@ function ScrappingInit() {
 
     let fetchPromises = platforms_selected.map((id) => { //`https://api.allorigins.win/get?url=${encodeURIComponent(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`)}
         resource_id = resource_id_json[id.replace("-btn", "")];
-
-
         return fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`)}`)
             .then(response => {
                 if (response.ok) return response.json();
@@ -118,9 +123,11 @@ function ScrappingInit() {
                 });
             });
             let str = JSON.stringify(res);
+            console.log(str);
             sessionStorage.setItem("response", str);
             go_button.innerHTML = "GO!";
             window.location = "../pages/result-page.html";
         })
         .catch(error => console.error('Error fetching data:', error));
 }
+

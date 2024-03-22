@@ -75,6 +75,31 @@ body{
     align-items: center;
     /* background-color: #DD1155; */
 }
+
+.custom-timeframe-item {
+    width:80%;
+
+}
+.start-date-div {
+    margin-bottom: 1vh;
+}
+.custom-timeframe-heading-text {
+    text-align: center;
+    font-size: 3vh;
+}
+
+.custom-time-headings {
+    font-size: 1.5vw;
+}
+.two-digit-date-input {
+    width: 15%;
+    border: none;
+    border-radius: 15px;
+}
+/* TODO  Custom timeframe input stuff*/
+/* .two-digit-date-input {
+    width:
+} */
 .option-button {
     height: 5.5vh;
     width:85%;
