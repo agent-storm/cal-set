@@ -1,3 +1,3 @@
 function CalsetPage(){
-    window.location = "/public/pages/calset.html";
+    window.location = "/pages/calset.html";
 }
