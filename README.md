@@ -1,7 +1,7 @@
 
 
 ### Note: This project is still under work, most of it is done, the prototype is all ready and working, some final touches and additional features are under work.
-## Check out the prototype @ https://calset-fb8e6.web.app
+## Check out the prototype @ https://cal-set.web.app
 # cal-set
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cal-set is a web app that can be used to selectively get data about the contests held by various hosts such as Codechef, CodeForces, Geeks for Geeks, Leet code, etc. Ultimatly the app should be able to create a event and upload it to your google calander for each contest so that you get notified when a contest is about to begin, also you can simply download the schedule of contest for the whole week on the whole month in the form of xlsx sheet.<br>
 
