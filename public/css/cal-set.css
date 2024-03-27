@@ -5,6 +5,10 @@ body{
     align-items: center;
     background-color: #2F2235;
 }
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
 .main-container-div {
     display: flex;
     justify-content: center;
@@ -48,22 +52,36 @@ body{
 .options-buttons-list {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     
+    overflow-y: scroll;
+    height: 90%;
     margin-top: 2vh;
     width:100%;
 }
 .options-list {
     display: flex;
-    justify-content: start;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
     flex-direction: column;
     list-style-type: none;
     
+    
+
     width: 100%;
     margin:0px; 
     padding: 0px;
 }
+
+.preset-options-button-list {
+    /* padding-bottom: 4vh; */
+    height: 80%;
+}
+/*
+.platform-options-list {
+    height: 100%;
+} */
+
 .options-list-item {
     /* margin-left:1vw; */
     height: 8vh;

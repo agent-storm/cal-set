@@ -94,23 +94,35 @@ function OptionChosen(section,btnId) {
 }
 
 function DescUpdate() {
-    let time_chosen;
+    let time_chosen = "(not selected)";
     let platforms_chosen = [];
-    for (var id in OptionStatus["timeframe"]){
-        if(OptionStatus["timeframe"][id] == 1){
-            time_chosen = id.replace("-btn","");
+    if(preset_options != ""){
+        platforms_chosen = preset_options.split("-")[0];
+        switch(preset_options.split("-")[1]){
+            case "full":
+                time_chosen = "full";
+                break;
+            case "1w":
+                time_chosen = "1 week";
+                break;
         }
-    }
-    for (var id in OptionStatus["platform"]){
-        if(OptionStatus["platform"][id] == 1){
-            platforms_chosen.push(id.replace("-btn",""));
+    } else {
+        for (var id in OptionStatus["timeframe"]){
+            if(OptionStatus["timeframe"][id] == 1){
+                time_chosen = id.replace("-btn","");
+            }
+        }
+        for (var id in OptionStatus["platform"]){
+            if(OptionStatus["platform"][id] == 1){
+                platforms_chosen.push(id.replace("-btn",""));
+            }
         }
     }
     let desc = `You have chosen the platforms <u>${platforms_chosen}</u> for the timeframe <u>${time_chosen}</u>`;
     let desc_box = document.getElementById("action-discription");
     desc_box.innerHTML = "";
     desc_box.innerHTML = desc;
-    
+
 }
 
 function ScrappingInit() {
@@ -131,7 +143,7 @@ function ScrappingInit() {
         // choose the values.
         platforms_selected = [preset_options.split("-")[0]]; // name of the platform like chodechef or codeforces.
         let timeframe = preset_options.split("-")[1];        //Timeframe like 1w, full, etc;
-        console.log("CHUPAPI: ",platforms_selected,timeframe);
+        
         //TODO:timefram == "full" you can only pass the start_gte and not give the end_lte value 
         // to get all the available future contests, but it has to have a modified 
         // GET req URL.
@@ -163,7 +175,7 @@ function ScrappingInit() {
                 platforms_selected.push(id.replace("-btn", ""));
             }
         }
-        console.log(platforms_selected,start_gte,end_lte);
+        
     }
 
     // Set start date and end date here, the "days_to_add" and 
@@ -171,7 +183,6 @@ function ScrappingInit() {
 
     let date_ = new Date();
     start_gte = date_.toISOString();
-    console.log("HELOOOOOOOOOOO", start_gte);
     date_.setDate(date_.getDate() + days_to_add);
     end_lte = date_.toISOString();
 
@@ -193,7 +204,7 @@ function ClistApiCalls(start_gte, end_lte,platforms_selected,go_button){
         return fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`)}`)
             .then(response => {
                 if (response.ok) return response.json();
-                throw new Error('Network response was not ok.');
+                throw new alert('Network response was not ok.');
             })
             .then(data => JSON.parse(data.contents))
             .then(jsonData => jsonData.objects);
@@ -215,6 +226,6 @@ function ClistApiCalls(start_gte, end_lte,platforms_selected,go_button){
             go_button.innerHTML = "GO!";
             window.location = "../pages/result-page.html";
         })
-        .catch(error => console.error('Error fetching data:', error));
+        .catch(error => alert('Error fetching data:', error));
 }
 
