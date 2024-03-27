@@ -34,8 +34,8 @@ function ScheduleDownload() {
 
 // Google API stuff (still working on it)
 
-const CLIENT_ID = '292309582190-1g3mul71cj6fkodcho4mj2e875pp3cj8.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyBRbr_1JWw2pGTmdJvBWNjwBWlsdfG7iXE';
+const CLIENT_ID = '482704809296-266p3dk7l7qrt11jtudh2s7k74ohe3q2.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyAVu__PBcgl0Wn2UmUBI6vbjsVQJG1FY_0';
 
 let tokenClient;
 let gapiInited = false;
@@ -101,7 +101,7 @@ async function CreateEvents() {
           let Finaldate = dates[2]+"-"+dates[1]+"-"+dates[0]+"T"+splitter[1];
           return Finaldate;
         }
-
+        
         const event = {
             'summary': `${(contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1)}-${contest["event"]}`,
             'location': '',

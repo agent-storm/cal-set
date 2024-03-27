@@ -3,7 +3,6 @@
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
-
 .audiowide-regular {
     font-family: "Audiowide", sans-serif;
     font-weight: 400;
@@ -67,6 +66,7 @@ body{
     height: 8vh;
     width: 15vw;
     border-radius: 20px;
+    font-family: "Ubuntu Mono", monospace;
     background-color: #A9ACA9;
     color: #3F3244;
     font-size:1.5vw;
@@ -93,3 +93,46 @@ body{
     color: #BFC3BA;
 } */
 
+@media (max-width:1000px){
+
+    .main-container-div {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .content-container-div {
+        margin:0;
+    }
+
+    .title-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10vh;
+    } 
+    .title-text {
+        width:100%;
+        text-align: center;
+        font-size: 18.5vw;
+    }
+    .next-page-btn-div {
+        width:90%;
+        margin-top:3vh;
+    }
+    .calset-page-button {
+        width: 90%;
+        font-size: 5vw;
+    }
+    .desc-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .secondary-text {
+        margin-top: 3vh;
+        font-size: 10vw;
+    }
+}
