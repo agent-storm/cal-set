@@ -1,6 +1,5 @@
 
 
-
 function SignOutPressed() {
     console.log(auth.currentUser);
     auth.signOut();
@@ -48,6 +47,7 @@ function OptionsDeselector(options_name){
                 tempBtn.style.backgroundColor = "#A9ACA9";
                 OptionStatus["preset"][id] = 0;
             }
+            preset_options = "";
             break;
     }
     
@@ -66,7 +66,7 @@ function OptionChosen(section,btnId) {
             }
         }
         preset_options = btnId;
-        // OptionsDeselector("timeframe");
+        OptionsDeselector("timeframe");
         OptionsDeselector("platform");
     } else {
         OptionsDeselector("preset");
@@ -89,7 +89,7 @@ function OptionChosen(section,btnId) {
         OptionStatus[section][btnId] = 0;
         btn.style.backgroundColor = "#A9ACA9";
     }
-    console.log("Heree: ",OptionStatus);
+    console.log("Heree: ",OptionStatus, preset_options);
     DescUpdate();
 }
 
@@ -119,43 +119,62 @@ function ScrappingInit() {
     let go_button = document.getElementById("go-btn");
     go_button.innerHTML = "<img src=\"../assets/icons8-sand-timer-unscreen.gif\">";
 
-    var start_gte, end_lte, resource_id;
+    var start_gte, end_lte,days_to_add;
     var platforms_selected = [];
     var time_frame = "";
 
 
-    if(true){
-        return;
-    } else {
+    if(preset_options != ""){ // If some preset has been chosen, execute if part
+        // Break down the preset chosen and initialize start,end,platforms_selected manually.
+        // NOTE: the preset_options will contain the btnId of the preset btn that will
+        // follow the "platform_name-timeframe-preset-btn" format so we can jsut split and 
+        // choose the values.
+        platforms_selected = [preset_options.split("-")[0]]; // name of the platform like chodechef or codeforces.
+        let timeframe = preset_options.split("-")[1];        //Timeframe like 1w, full, etc;
+        console.log("CHUPAPI: ",platforms_selected,timeframe);
+        //TODO:timefram == "full" you can only pass the start_gte and not give the end_lte value 
+        // to get all the available future contests, but it has to have a modified 
+        // GET req URL.
+        if(timeframe == "1w") days_to_add = 7;
+        else if (timeframe == "2w") days_to_add = 14;
+        else if (timeframe == "1m") days_to_add = 30;
+        else if (timeframe == "full") days_to_add = 1000; //Temporary fix for "full" request.
+
+    } else { // Id no Preset option in chosen, proceed with the usual procedure.
         for (let id in OptionStatus["timeframe"]) {
             if (OptionStatus["timeframe"][id] == 1) time_frame = id;
         }
-        console.log("here: ",time_frame);
         if(!time_frame) {
             alert("Please choose a timeframe dude.");
             go_button.innerHTML = "Go!";
         }
+
         if (time_frame != "") {
-            let days_to_add;
+            
             if(time_frame == "one-week-btn") days_to_add = 7;
             else if (time_frame == "one-month-btn") days_to_add = 30;
             else if (time_frame == "two-week-btn") days_to_add = 14;
-            let date_ = new Date();
-            start_gte = date_.toISOString();
-            date_.setDate(date_.getDate() + days_to_add);
-            end_lte = date_.toISOString();
+            
         }
     
         
         for (let id in OptionStatus["platform"]) {
             if (OptionStatus["platform"][id] == 1) {
-                platforms_selected.push(id);
+                platforms_selected.push(id.replace("-btn", ""));
             }
         }
+        console.log(platforms_selected,start_gte,end_lte);
     }
 
+    // Set start date and end date here, the "days_to_add" and 
+    // platforms_selected can be chosen in the above if-else statement.
 
-    
+    let date_ = new Date();
+    start_gte = date_.toISOString();
+    console.log("HELOOOOOOOOOOO", start_gte);
+    date_.setDate(date_.getDate() + days_to_add);
+    end_lte = date_.toISOString();
+
     ClistApiCalls(start_gte, end_lte,platforms_selected,go_button);
 }
 
@@ -169,7 +188,8 @@ function ClistApiCalls(start_gte, end_lte,platforms_selected,go_button){
     }
 
     let fetchPromises = platforms_selected.map((id) => { //`https://api.allorigins.win/get?url=${encodeURIComponent(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`)}
-        resource_id = resource_id_json[id.replace("-btn", "")];
+        // resource_id = resource_id_json[id.replace("-btn", "")];
+        resource_id = resource_id_json[id];
         return fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`)}`)
             .then(response => {
                 if (response.ok) return response.json();
