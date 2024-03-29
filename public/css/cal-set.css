@@ -146,7 +146,7 @@ body{
     border-radius: 30px;
 }
 .action-discription-div {
-    width: 60vw;
+    width: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -161,16 +161,26 @@ body{
     border-radius: 30px;
     font-size: 3vh;
 }
+.desc-btn-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 100%;
+    width:30%;
+}
 .go-btn {
     background-color: #A9ACA9;
-    width:30vw;
-    font-size: 5vh;
+    height: 90%;
+    width:50%;
+    font-size: 3vh;
     border:none;
     border-radius: 30px;
     margin:1.3vh;
     flex-grow: 1;
     transition:0.5s;
 }
+
 .go-btn:hover {
     cursor: url('../assets/icons8-select-cursor-35.png'), auto;
     box-shadow: 8px 8px;

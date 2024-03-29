@@ -17,8 +17,10 @@ Object.values(contests).forEach((contest)=> {
     let contest_link = contest["href"];
     data.push([platform_name,contest_name,contest_time.split("@")[0],contest_time.split("@")[1],contest_duration,contest_link]);
 });
+
 let ul = document.getElementById("contest-list");
 ul.innerHTML = all_list_items;
+
 
 
 function ScheduleDownload() {

@@ -224,5 +224,5 @@ function WeekelyScrapper() {
     let date_ = new Date();
     let start_gte = date_.toISOString();
     let platforms_list = ["codeforces","codechef","leetcode","gfg"];
-    ClistApiCalls();
+    ClistApiCalls(start_gte,"full",platforms_list);
 }
