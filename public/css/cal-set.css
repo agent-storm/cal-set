@@ -217,9 +217,17 @@ body{
         width: 90%;
         text-align: center;
     }
+    .desc-btn-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+        width:100%;
+    }
     .go-btn {
-        height: 20vh;
+        height: 10vh;
         width:95%;
-        font-size: 15vw;
+        font-size: 10vw;
     }
 }
