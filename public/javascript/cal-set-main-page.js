@@ -148,24 +148,18 @@ function ScrappingInit() {
             alert("Please choose a timeframe dude.");
             GoBtnController("go");
         }
-
         if (time_frame != "") {
             // TODO: Can potentially add a "Full time" option here, this timeframe option will return all the contests available.
         
             if(time_frame == "one-week-btn") days_to_add = 7;
             else if (time_frame == "one-month-btn") days_to_add = 30;
             else if (time_frame == "two-week-btn") days_to_add = 14;
-
-            
         }
-    
-        
         for (let id in OptionStatus["platform"]) {
             if (OptionStatus["platform"][id] == 1) {
                 platforms_selected.push(id.replace("-btn", ""));
             }
         }
-        
     }
 
     // Set start date and end date here, the "days_to_add" and 
@@ -191,16 +185,12 @@ function ScrappingInit() {
 }
 
 function ClistApiCalls(start_gte, end_lte,platforms_selected){
-
-
     var resource_id_json = {
         "codechef": 2,
         "codeforces": 1,
         "leetcode": 102,
         "gfg": 126,
     }
-
-    
     let fetchPromises = platforms_selected.map((id) => { //`https://api.allorigins.win/get?url=${encodeURIComponent(`https://clist.by/api/v4/contest/?username=agent_storm&api_key=7129eafffe8ab3889c0ac5c92b6d8e3b147e0fc5&resource_id=${resource_id}&start__gte=${start_gte}&end__lte=${end_lte}&order_by=start&duration__lte=10800`)}
         // resource_id = resource_id_json[id.replace("-btn", "")];
         resource_id = resource_id_json[id];
@@ -239,11 +229,20 @@ function ClistApiCalls(start_gte, end_lte,platforms_selected){
 function WeekelyScrapper() {
     let date_ = new Date();
     let start_gte = date_.toISOString();
-    let platforms_list = ["codeforces","codechef","leetcode","gfg"];
+    // let platforms_list = ["codeforces","codechef","leetcode","gfg"]; // Real values
+    let platforms_list = ["codeforces"]; // For testing sake
 
     ClistApiCalls(start_gte,"full",platforms_list)
     .then(result => {
-        console.log(result); 
+        // console.log(contests); 
+        let contests = JSON.parse(result);
+        Object.values(contests).forEach((contest)=> {
+            let platform_name = (contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1);
+            let contest_name = contest["event"];
+            let contest_duration = parseInt(contest["duration"])/60 + " mins";
+            let contest_link = contest["href"];
+            console.log("platform_name: ",platform_name,"contest_name: ",contest_name,"contest_start: ",contest["start"],"contest_end: ",contest["end"],"contest_duration: ",contest_duration,"contest_link: ",contest_link);
+        });
     })
     .catch(error => {
         console.error(error);

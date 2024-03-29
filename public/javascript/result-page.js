@@ -5,6 +5,7 @@ let contests = JSON.parse(sessionStorage.getItem("response"));
 const data = [
     ["platform_name", "contest_name", "contest_duration","contest_date", "contest_time", "contest_link"]
 ];
+
 Object.values(contests).forEach((contest)=> {
     let platform_name = (contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1);
     let contest_name = contest["event"];
@@ -35,7 +36,6 @@ function ScheduleDownload() {
 
 
 // Google API stuff (still working on it)
-
 const CLIENT_ID = '482704809296-266p3dk7l7qrt11jtudh2s7k74ohe3q2.apps.googleusercontent.com';
 const API_KEY = 'AIzaSyAVu__PBcgl0Wn2UmUBI6vbjsVQJG1FY_0';
 
