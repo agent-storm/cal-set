@@ -3,6 +3,15 @@
     ToDo list(ideas):
     -> Add a option "Full" in the time frame options to get all the available contests.
     -> Custom Preset creation option. 
+
+    DataBase Integration:
+    Note: Most the stuff here is going to get deleted.{Will try to save it somehow ig, the ScrappingInit() method can be a optional option in site.}
+    The Idea:
+        -> Weekly once a script/function is executed, this function will get data of all the contests and store it in the firestore DB.
+        -> When ever the user selects options and clicks "Go", we send the "OptionStatus" JSON to the results page(Session Storage).
+        -> Result Page will process this JSON, then Retrive data from the Firestore DB according to the OptionStatus JSON.
+        
+
 */
 
 function SignOutPressed() {
@@ -170,7 +179,15 @@ function ScrappingInit() {
         end_lte = date_.toISOString();
     }
 
-    ClistApiCalls(start_gte, end_lte, platforms_selected);
+    ClistApiCalls(start_gte, end_lte,platforms_selected)
+    .then(result => {
+        console.log(result);
+        sessionStorage.setItem("response",result);
+        window.location = "../pages/result-page.html";
+    })
+    .catch(error => {
+        alert(error,"Please refresh page.");
+    });
 }
 
 function ClistApiCalls(start_gte, end_lte,platforms_selected){
@@ -202,7 +219,7 @@ function ClistApiCalls(start_gte, end_lte,platforms_selected){
             .then(jsonData => jsonData.objects);
     });
 
-    Promise.all(fetchPromises)
+    let contest_date = Promise.all(fetchPromises)
         .then(results => {
             let res = {};
             let count = 0;
@@ -212,17 +229,23 @@ function ClistApiCalls(start_gte, end_lte,platforms_selected){
                     count += 1;
                 });
             });
-            let str = JSON.stringify(res);
-            console.log(str);
-            sessionStorage.setItem("response", str);
-            GoBtnController("go");
-            window.location = "../pages/result-page.html";
+            var contests_list = JSON.stringify(res);
+            return contests_list;
         })
-        .catch(error => alert('Error fetching data:', error));
+        .catch(error => alert('Error fetching data, please refresh the page.', error));
+    return contest_date; //Returns a promise with the 
 }
+
 function WeekelyScrapper() {
     let date_ = new Date();
     let start_gte = date_.toISOString();
     let platforms_list = ["codeforces","codechef","leetcode","gfg"];
-    ClistApiCalls(start_gte,"full",platforms_list);
+
+    ClistApiCalls(start_gte,"full",platforms_list)
+    .then(result => {
+        console.log(result); 
+    })
+    .catch(error => {
+        console.error(error);
+    });
 }
