@@ -19,6 +19,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     background-color: #2F2235;
 }
 .main-container-div {
@@ -32,6 +33,7 @@ body{
     margin-top: 10vh;
     border-radius: 30px;
 }
+
 .content-container-div {
     margin-left: 6vw;
     width: 90%;
@@ -91,6 +93,73 @@ body{
     margin-top: 1.5vh;
     font-size: 1vw;
     color: #BFC3BA;
+} */
+
+.secondary-container-div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #3F3244;
+    flex-direction: column;
+    height:100%;
+    width:80vw;
+    margin-top: 10vh;
+    border-radius: 30px;
+}
+
+.secondary-container-subdiv {
+    margin-left:5vw;
+    width:90%;
+}
+
+.title-textt {
+    font-size: 4vw;
+    color: #BFC3BA;
+    font-family: "Ubuntu Mono", monospace;
+}
+
+.description-textt {
+    font-size: 1.5vw;
+    color: #BFC3BA;
+    font-family: "Ubuntu Mono", monospace;
+}
+
+.technologies-used-title {
+    font-size: 2vw;
+    color: #BFC3BA;
+    font-family: "Ubuntu Mono", monospace;
+}
+
+.technologies-used-list {
+    font-size: 1.5vw;
+    color: #BFC3BA;
+    font-family: "Ubuntu Mono", monospace;
+}
+
+.contact-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-me-title {
+    font-family: "Ubuntu Mono", monospace;
+    font-size: 1.5vw;
+    color: #BFC3BA;
+}
+.contact {
+    margin-left:2vw;
+    margin-right: 2vw;
+
+}
+/* TODO:smaller icons downlaod and setup \
+ * Gmail contact bug.
+*/
+
+/* .contact-img {
+    height: 10vh;
+    width: 10vw;
 } */
 
 @media (max-width:1000px){

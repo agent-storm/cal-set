@@ -10,7 +10,11 @@
         -> Weekly once a script/function is executed, this function will get data of all the contests and store it in the firestore DB.
         -> When ever the user selects options and clicks "Go", we send the "OptionStatus" JSON to the results page(Session Storage).
         -> Result Page will process this JSON, then Retrive data from the Firestore DB according to the OptionStatus JSON.
-        
+    Process(DB creation and Data Storage):
+        -> Delete any old "Collection" (from previous week) if exists.
+        -> Create a new Collection with an appropriate name (something like a currentt date.)
+        -> For each contest create a new "document" with all the contest data, document is like a JSON.
+    PS: Watch Course on YT.
 
 */
 
@@ -172,7 +176,7 @@ function ScrappingInit() {
         date_.setDate(date_.getDate() + days_to_add);
         end_lte = date_.toISOString();
     }
-
+    console.log("HEREEE");
     ClistApiCalls(start_gte, end_lte,platforms_selected)
     .then(result => {
         console.log(result);
@@ -183,11 +187,12 @@ function ScrappingInit() {
         alert(error,"Please refresh page.");
     });
 }
-
+// Returns a JSON String that contains all the contests in the requested platforms_selected list and the
+// Specified timeframe.
 function ClistApiCalls(start_gte, end_lte,platforms_selected){
     var resource_id_json = {
-        "codechef": 2,
         "codeforces": 1,
+        "codechef": 2,
         "leetcode": 102,
         "gfg": 126,
     }
@@ -208,7 +213,6 @@ function ClistApiCalls(start_gte, end_lte,platforms_selected){
             .then(data => JSON.parse(data.contents))
             .then(jsonData => jsonData.objects);
     });
-
     let contest_date = Promise.all(fetchPromises)
         .then(results => {
             let res = {};
@@ -242,6 +246,8 @@ function WeekelyScrapper() {
             let contest_duration = parseInt(contest["duration"])/60 + " mins";
             let contest_link = contest["href"];
             console.log("platform_name: ",platform_name,"contest_name: ",contest_name,"contest_start: ",contest["start"],"contest_end: ",contest["end"],"contest_duration: ",contest_duration,"contest_link: ",contest_link);
+            // TODO: Add this data to the Firestore.
+            
         });
     })
     .catch(error => {

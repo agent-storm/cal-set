@@ -15,7 +15,7 @@
     <script src="javascript\index.js"></script>
 </head>
 <body>
-    <div class="main-container-div">
+    <div class="container main-container-div">
         <div class="content-container-div">
             <div class="title-div">
                 <h1 class="title-text">CalSET</h1>
@@ -29,11 +29,69 @@
             </div>
         </div>
     </div>
-
+    <div class=" container secondary-container-div">
+        <div class="secondary-container-subdiv">
+            <div class="description-div">
+                <div class="description-title-div"><h1 class="title-textt description-title">What is CalSET?</h1></div>
+                <div class="description-text-div">
+                    <span class="description-textt description-text">
+                        &emsp;&emsp;CalSET is a simple web app, where students can choose a timeframe, and select the platforms in which they want to 
+                        participate in, and they will get the list of all the contests in those platforms in the chosen timeframe. The user can 
+                        choose to download the schedule or even better, add the contests to their Google Calendar to get reminders of the contest.
+                    </span>
+                </div>
+            </div>
+            <div class="how-works-div">
+                <div class="working-title-div"><h1 class="title-textt working-title-text">How does it work?</h1></div>
+                <div class="working-text-div">
+                    <span class="description-textt general-working-text">
+                        &emsp;&emsp;Once a week, a GET request API is sent to the CLIST server, CLIST API is used to retrive all the data from the contests, but we only need 
+                        the contest details, so after getting the data of all the contests we process that data and store it in the local database(firebase), and this
+                        data is updated periodically.
+                        <br><br>
+                        &emsp;&emsp;Whenever a user asked for particular data of a set of platforms, we simply query the required data from local database and present it to the user,
+                        this elemeinats the need of constantly having to sent a GET request to get the needed data.
+                        Once the required data or requested data is obtained from the local database, the user can either download it as a XLSX file add the 
+                        cotnests to theie Google Calendar by loging in.
+    
+                    </span>
+                    <h3 class="technologies-used-title tools-used-title">Tools Used:</h3>
+                    <span class="technologies-used-list tools-used">
+                        <ul class="tools-used-list">
+                            <li class="tool-name-item">HTML</li>
+                            <li class="tool-name-item">CSS</li>
+                            <li class="tool-name-item">JavaScript</li>
+                            <li class="tool-name-item">Firebase</li>
+                            <li class="tool-name-item">VSCode</li>
+                        </ul>
+                    </span>
+                    <h3 class="technologies-used-title apis-used-title">APIs Used:</h3>
+                    <span class="technologies-used-list apis-used">
+                        <ul class=" pis-used-list">
+                            <li class="apis-used-item">CLIST API</li>
+                            <li class="apis-used-item">Google Calendar API</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+    
+            <div class="contact-div">
+                <div class="contant-title-div"><h3 class="contact-me-title"><u>CONTACT</u></h3></div>
+                <div class="contact-methods-div">
+                    <a class="contact" href="mailto:gujarathisaisrinith@gmail.com" target="_blank"><img src="../public/assets/icons8-gmail-64 (4).png" class="contact-img"></a>
+                    <a class="contact" href="https://www.linkedin.com/in/gujarathi-sai-srinith-3035a5242/" target="_blank"><img src="../public/assets/icons8-linkedin-64 (1).png"></a>
+                    <a class="contact" href="https://github.com/agent-storm" target="_blank"><img src="../public/assets/icons8-github-64.png"></a>
+                    <a class="contact" href="https://www.instagram.com/srinith_10" target="_blank"><img src="../public/assets/icons8-instagram-64.png"></a>
+                </div>
+            </div>
+        </div>
+    </div>
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+        import { getFirestore } from "firebase/firestore";
+
         // https://firebase.google.com/docs/web/setup#available-libraries
       
         // Your web app's Firebase configuration
@@ -51,6 +109,7 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
+        const db = getFirestore(app);
       </script>
 </body>
 </html>
