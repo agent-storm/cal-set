@@ -1,0 +1,94 @@
+const OptionStatus = {
+    "timeframe" : {
+        "one-week-btn":0,
+        "one-month-btn":0,
+        "two-week-btn":0
+
+    },
+    "platform" : {
+        "codechef-btn":0,
+        "codeforces-btn":0,
+        "leetcode-btn":0,
+        "gfg-btn":0
+    },
+    "preset" : {
+        "codeforces-full-preset-btn":0,
+        "codechef-full-preset-btn":0,
+        "leetcode-full-preset-btn":0,
+        "gfg-full-preset-btn":0,
+
+        "codeforces-1w-preset-btn":0,
+        "codechef-1w-preset-btn":0,
+        "leetcode-1w-preset-btn":0,
+        "gfg-1w-preset-btn":0
+        
+    }
+}
+
+function OptionsDeselector(options_name){
+    switch(options_name){
+        case "timeframe":
+            for (var id in OptionStatus["timeframe"]){
+                var tempBtn = document.getElementById(id);
+                tempBtn.style.backgroundColor = "#A9ACA9";
+                OptionStatus["timeframe"][id] = 0;
+            }
+            break;
+        case "platform":
+            for (var id in OptionStatus["platform"]){
+                var tempBtn = document.getElementById(id);
+                tempBtn.style.backgroundColor = "#A9ACA9";
+                OptionStatus["platform"][id] = 0;
+            }
+            break;
+        case "preset":
+            for (var id in OptionStatus["preset"]){
+                var tempBtn = document.getElementById(id);
+                tempBtn.style.backgroundColor = "#A9ACA9";
+                OptionStatus["preset"][id] = 0;
+            }
+            preset_options = "";
+            break;
+    }
+    
+    DescUpdate();
+}
+var preset_options; // For storing Preset options
+function OptionChosen(section,btnId) {
+    const btn = document.getElementById(btnId);
+
+    if(section == "preset"){
+        for (var id in OptionStatus["preset"]){
+            if(id!=btnId){
+                var tempBtn = document.getElementById(id);
+                tempBtn.style.backgroundColor = "#A9ACA9";
+                OptionStatus["preset"][id] = 0;
+            }
+        }
+        preset_options = btnId;
+        OptionsDeselector("timeframe");
+        OptionsDeselector("platform");
+    } else {
+        OptionsDeselector("preset");
+    }
+    if(section == "timeframe"){
+        for (var id in OptionStatus["timeframe"]){
+            if(id!=btnId){
+                var tempBtn = document.getElementById(id);
+                tempBtn.style.backgroundColor = "#A9ACA9";
+                OptionStatus["timeframe"][id] = 0;
+            }
+        }
+    }
+
+    if(OptionStatus[section][btnId] == 0){
+        OptionStatus[section][btnId] = 1;
+        btn.style.backgroundColor = "#DD1155";
+    }
+    else {
+        OptionStatus[section][btnId] = 0;
+        btn.style.backgroundColor = "#A9ACA9";
+    }
+    console.log("OptionCHosenFunc:",OptionStatus, preset_options);
+    DescUpdate();
+}

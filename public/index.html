@@ -12,7 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
-    <script src="javascript\index.js"></script>
+    <script src="./javascript/firebase-init.js" type="module"></script>
+    <script src="./javascript/index.js"></script>
 </head>
 <body>
     <div class="container main-container-div">
@@ -86,30 +87,6 @@
             </div>
         </div>
     </div>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-        import { getFirestore } from "firebase/firestore";
-
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyAVu__PBcgl0Wn2UmUBI6vbjsVQJG1FY_0",
-          authDomain: "cal-set.firebaseapp.com",
-          projectId: "cal-set",
-          storageBucket: "cal-set.appspot.com",
-          messagingSenderId: "482704809296",
-          appId: "1:482704809296:web:5b249b4efa878d53dfe055",
-          measurementId: "G-V0G9LK9J12"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const db = getFirestore(app);
-      </script>
+    
 </body>
 </html>

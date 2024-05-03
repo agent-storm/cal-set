@@ -1,4 +1,8 @@
+
+
+
 // Contains the non-core methods, written seperately to reduce clutter in main js file.
+
 function GoBtnController(option){
     var go_button = document.getElementById("go-btn");
     if(option == "logo"){
@@ -7,6 +11,7 @@ function GoBtnController(option){
         go_button.innerHTML = "Go!";
     }
 }
+
 
 //DescUpdate() is called to update the description on the calset page after a button is selected or
 //deselected.
@@ -41,3 +46,8 @@ function DescUpdate() {
     desc_box.innerHTML = desc;
 
 }
+
+function hellobaby(){
+    console.log("Hello");
+    alert("helper-here/");
+  }
