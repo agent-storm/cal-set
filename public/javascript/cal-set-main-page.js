@@ -17,6 +17,18 @@
     PS: Watch Course on YT.
 
 */
+
+// import {app,getFirestore,collection,addDoc} from "../javascript/firebase-init.js";
+
+import { 
+    getFirestore,
+    collection,
+    addDoc,query, 
+    getDocs, 
+    deleteDoc, 
+    doc
+ } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
 function ScrappingInit() {
     sessionStorage.clear();
     GoBtnController("logo"); // Change the Go button inner html to a loading gif.
@@ -128,51 +140,62 @@ function ClistApiCalls(start_gte, end_lte,platforms_selected){
     return contest_date; //Returns a promise with the 
 }
 
-function WeekelyScrapper() {
-    let date_ = new Date();
-    let start_gte = date_.toISOString();
-    // let platforms_list = ["codeforces","codechef","leetcode","gfg"]; // Real values
-    let platforms_list = ["codeforces","codechef"]; // For testing sake
-    console.log("WeekelyScrapper init");
-    ClistApiCalls(start_gte,"full",platforms_list)
-    .then(result => {
-        // console.log(contests); 
-        let contests = JSON.parse(result);
-        Object.values(contests).forEach((contest)=> {
-            let platform_name = (contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1);
-            let contest_name = contest["event"];
-            let contest_duration = parseInt(contest["duration"])/60 + " mins";
-            let contest_link = contest["href"];
-            console.log("platform_name: ",platform_name,"contest_name: ",contest_name,"contest_start: ",contest["start"],"contest_end: ",contest["end"],"contest_duration: ",contest_duration,"contest_link: ",contest_link);
-            
-            // TODO: Add this data to the Firestore.
-            // Add a second document with a generated ID.
-            // let db = firebase.firestore();
-            // db.collection("testcol").add({
-            //     name:"Dada",
-            //     age:"Giri"
-            // })
-            // .then((docRef) => {
-            //     console.log("Document written with ID: ", docRef.id);
-            // })
-            // .catch((error) => {
-            //     console.error("Error adding document: ", error);
-            // });
-            sessionStorage.setItem("response",result);
-            window.location = "../pages/result-page.html";
-        });
-    })
-    .catch(error => {
-        console.error(error);
+async function DeleteDocs(collectionPath) {
+    const db = getFirestore();
+    const q = query(collection(db, collectionPath));
+
+    const querySnapshot = await getDocs(q);
+    const batch = [];
+    querySnapshot.forEach((doc) => {
+        batch.push(deleteDoc(doc.ref));
     });
+
+    // Execute all delete operations
+    await Promise.all(batch);
+    console.log('All documents in the collection have been deleted.');
 }
 
 
-
+async function WeekelyScrapper() {
+    let date_ = new Date();
+    let start_gte = date_.toISOString();
+    let platforms_list = ["codechef","codeforces","leetcode",'gfg']; // For testing sake
+    const db = getFirestore();
+    console.log("WeekelyScrapper init");
+    await DeleteDocs("testcol"); // Delete previous records so we can add new records weekely
+    try {
+        const result = await ClistApiCalls(start_gte, "full", platforms_list);
+        let contests = JSON.parse(result);
+        for (const contest of Object.values(contests)) {
+            let platform_name = (contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1);
+            let contest_name = contest["event"];
+            let contest_duration = parseInt(contest["duration"]) / 60 + " mins";
+            let contest_link = contest["href"];
+            console.log("platform_name: ", platform_name, "contest_name: ", contest_name, "contest_start: ", contest["start"], "contest_end: ", contest["end"], "contest_duration: ", contest_duration, "contest_link: ", contest_link);
+            
+            // Adding document to Firestore
+            try {
+                const docRef = await addDoc(collection(db, "testcol"), {
+                    Platform:platform_name,
+                    Contest:contest_name,
+                    Start:contest["start"],
+                    End:contest["end"],
+                    Duration:contest_duration,
+                    Link:contest_link
+                });
+                console.log("Document written with ID: ", docRef.id);
+            } catch (error) {
+                console.error("Database insert failed: ", error);
+            }
+        }
+    } catch (error) {
+        console.error("Error fetching contests: ", error);
+    }
+}
 
 // handling all the button click events.
 const dbBtn = document.getElementById("db-btn");
-const goBtn = document.getElementById("go-btn")
+const goBtn = document.getElementById("go-btn");
 
 dbBtn.addEventListener("click",WeekelyScrapper);
 goBtn.addEventListener('click',ScrappingInit);

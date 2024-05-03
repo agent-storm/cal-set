@@ -1,7 +1,12 @@
 // firebase-init.js
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { 
+    getFirestore,
+    collection,
+    addDoc
+
+ } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAVu__PBcgl0Wn2UmUBI6vbjsVQJG1FY_0",
@@ -14,13 +19,10 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+export const database = getFirestore(app);
 // console.log(app,db);
-export function helpertest(){
-    console.log("TEST WORKING HELL YEAH!");
-    alert("Working order");
-}
-// helpertest();
-const btntest = document.getElementById("test-btn");
-btntest.addEventListener('click',helpertest);
+export {getFirestore,collection}
+
+
+
 
