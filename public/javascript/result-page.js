@@ -1,29 +1,33 @@
 // let list_item = `<li class=\"contest-list-item\"><button class=\"contest-details-button\" ><span class=\"platform-name contest-details\">${}</span> <span class=\"contest-name contest-details\">${}</span> <span class=\"contest-date-time contest-details\">${}</span> <span class=\"contest-duration contest-details\">${}</span></button></li>`;
 let all_list_items = "";
 let contestList = "";
-let contests = JSON.parse(sessionStorage.getItem("response"));
+let contests = JSON.parse(sessionStorage.getItem("response")); //Get the JSON data of contests.
+//After processing the contests data is stored in the "data" 2D array.
 const data = [
     ["platform_name", "contest_name", "contest_duration","contest_date", "contest_time", "contest_link"]
 ];
 
-Object.values(contests).forEach((contest)=> {
-    let platform_name = (contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1);
-    let contest_name = contest["event"];
-    let utcTimestamp = new Date(contest["start"]);
-    let contest_time_str = new Date(utcTimestamp.getTime() + (5.5 * 60 * 60 * 1000));
-    let contest_time = (contest_time_str.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })).replace(","," @");
-    let contest_duration = parseInt(contest["duration"])/60 + " mins";
-    let list_item = `<li class=\"contest-list-item\"><a target="_blank" href=\"${contest["href"]}\" class=\"contest-link\"><button class=\"contest-details-button\"><span class=\"platform-name contest-details\">${platform_name}</span> <span class=\"contest-name contest-details\">${contest_name}</span> <span class=\"contest-date-time contest-details\">${contest_time}</span> <span class=\"contest-duration contest-details\">${contest_duration}</span></button></li>`;
-    all_list_items += list_item;
-    let contest_link = contest["href"];
-    data.push([platform_name,contest_name,contest_time.split("@")[0],contest_time.split("@")[1],contest_duration,contest_link]);
-});
+//The following oiece of code will process the JSON data and store each contest details in the "data" array
+// Object.values(contests).forEach((contest)=> {
+//     let platform_name = (contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1);
+//     let contest_name = contest["event"];
+//     let utcTimestamp = new Date(contest["start"]);
+//     let contest_time_str = new Date(utcTimestamp.getTime() + (5.5 * 60 * 60 * 1000));
+//     let contest_time = (contest_time_str.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })).replace(","," @");
+//     let contest_duration = parseInt(contest["duration"])/60 + " mins";
+//     let list_item = `<li class=\"contest-list-item\"><a target="_blank" href=\"${contest["href"]}\" class=\"contest-link\"><button class=\"contest-details-button\"><span class=\"platform-name contest-details\">${platform_name}</span> <span class=\"contest-name contest-details\">${contest_name}</span> <span class=\"contest-date-time contest-details\">${contest_time}</span> <span class=\"contest-duration contest-details\">${contest_duration}</span></button></li>`;
+//     all_list_items += list_item; //add the html for <li> to a string.
+//     let contest_link = contest["href"];
+//     data.push([platform_name,contest_name,contest_time.split("@")[0],contest_time.split("@")[1],contest_duration,contest_link]);
+// });
 
+
+//change the inner HTML of the <ul> element in result page to display the contests.
 let ul = document.getElementById("contest-list");
 ul.innerHTML = all_list_items;
 
 
-
+// Used to downlaod the contests details in the form of xlsx sheet.
 function ScheduleDownload() {
     const workbook = XLSX.utils.book_new();
     const worksheet = XLSX.utils.aoa_to_sheet(data);
