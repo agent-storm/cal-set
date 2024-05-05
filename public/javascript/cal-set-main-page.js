@@ -33,13 +33,26 @@ import {
 function ScrappingInit() {
     sessionStorage.clear();
     GoBtnController("logo"); // Change the Go button inner html to a loading gif.
+    
+    TransferChosenOptions();
 
-    var start_gte, end_lte,days_to_add;
+
+    let optionSelection = JSON.parse(sessionStorage.getItem("selected-options")); // This is a JSON file that stores the user selected options.
+
+    var start_gte, end_lte,days_to_add,preset_options="";
     var platforms_selected = [];
     var time_frame = "";
 
+    for(var presetname in optionSelection["preset"]){
+        if(optionSelection["preset"][presetname] == 1){
+            preset_options = presetname;
+            break;
+        }
+    }
 
-    if(preset_options != ""){ // If some preset has been chosen, execute if part
+
+    if(preset_options != ""){ 
+        // If some preset has been chosen, execute if part
         // Break down the preset chosen and initialize start,end,platforms_selected manually.
         // NOTE: the preset_options will contain the btnId of the preset btn that will
         // follow the "platform_name-timeframe-preset-btn" format so we can jsut split and 
@@ -55,10 +68,12 @@ function ScrappingInit() {
         else if (timeframe == "1m") days_to_add = 30;
         else if (timeframe == "full") end_lte = "full"; //We pass end_lte as "full" when calling the ClistApiCalls() method.
 
-    } else { 
+    } 
+    else 
+    { 
         // Ifno Preset option in chosen, proceed with the usual procedure.
-        for (let id in OptionStatus["timeframe"]) {
-            if (OptionStatus["timeframe"][id] == 1) time_frame = id;
+        for (let id in optionSelection["timeframe"]) {
+            if (optionSelection["timeframe"][id] == 1) time_frame = id;
         }
         if(!time_frame) {
             alert("Please choose a timeframe dude.");
@@ -71,8 +86,8 @@ function ScrappingInit() {
             else if (time_frame == "one-month-btn") days_to_add = 30;
             else if (time_frame == "two-week-btn") days_to_add = 14;
         }
-        for (let id in OptionStatus["platform"]) {
-            if (OptionStatus["platform"][id] == 1) {
+        for (let id in optionSelection["platform"]) {
+            if (optionSelection["platform"][id] == 1) {
                 platforms_selected.push(id.replace("-btn", ""));
             }
         }
@@ -88,16 +103,23 @@ function ScrappingInit() {
         date_.setDate(date_.getDate() + days_to_add);
         end_lte = date_.toISOString();
     }
+
+    console.log(platforms_selected,start_gte,end_lte)
+    //TODO:We have the threee options, printed above in the console .log statement. 
+    //Next step is to make queries based on these three options.
     
-    ClistApiCalls(start_gte, end_lte,platforms_selected)
-    .then(result => {
-        console.log(result);
-        sessionStorage.setItem("response",result);
-        window.location = "../pages/result-page.html";
-    })
-    .catch(error => {
-        alert(error,"Please refresh page.");
-    });
+    
+
+    //The following block of code is used to make CLIST API requests for the reqiired data.
+    // ClistApiCalls(start_gte, end_lte,platforms_selected)
+    // .then(result => {
+    //     console.log(result);
+    //     sessionStorage.setItem("response",result);
+    //     window.location = "../pages/result-page.html";
+    // })
+    // .catch(error => {
+    //     alert(error,"Please refresh page.");
+    // });
 }
 // Returns a JSON String that contains all the contests in the requested platforms_selected list and the
 // Specified timeframe.
@@ -139,7 +161,7 @@ function ClistApiCalls(start_gte, end_lte,platforms_selected){
             return contests_list;
         })
         .catch(error => alert('Error fetching data, please refresh the page.', error));
-    return contest_date; //Returns a promise with the 
+    return contest_date; //Returns a promise with the data.
 }
 
 async function DeleteDocs(collectionPath) {
@@ -198,7 +220,7 @@ async function WeekelyScrapper() {
 
 // handling all the button click events.
 const dbBtn = document.getElementById("db-btn");
-// const goBtn = document.getElementById("go-btn");
+const goBtn = document.getElementById("go-btn");
 
 dbBtn.addEventListener("click",WeekelyScrapper);
-// goBtn.addEventListener('click',ScrappingInit);
+goBtn.addEventListener('click',ScrappingInit);

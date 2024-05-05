@@ -94,11 +94,12 @@ function OptionChosen(section,btnId) {
     DescUpdate();
 }
 
-function ScrapingInit(){
+function TransferChosenOptions(){
     sessionStorage.clear();
     GoBtnController("logo");
     console.log("ScrapingInitMethod:");
     console.log(JSON.stringify(OptionStatus));
     sessionStorage.setItem("selected-options",JSON.stringify(OptionStatus));
-    window.location = "../pages/result-page.html";
+    // window.location = "../pages/result-page.html";
+    
 }
