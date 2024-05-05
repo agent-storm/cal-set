@@ -93,6 +93,8 @@ if(end_lte != "full") {
     end_lte = date_.toISOString();
 }
 console.log(platforms_selected,start_gte,end_lte)
+//TODO:We have the threee options, printed above in the console .log statement. 
+//Next step is to make queries based on these three options.
 
 
 //change the inner HTML of the <ul> element in result page to display the contests.
