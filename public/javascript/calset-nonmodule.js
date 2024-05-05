@@ -1,3 +1,4 @@
+
 const OptionStatus = {
     "timeframe" : {
         "one-week-btn":0,
@@ -91,4 +92,13 @@ function OptionChosen(section,btnId) {
     }
     console.log("OptionCHosenFunc:",OptionStatus, preset_options);
     DescUpdate();
+}
+
+function ScrapingInit(){
+    sessionStorage.clear();
+    GoBtnController("logo");
+    console.log("ScrapingInitMethod:");
+    console.log(JSON.stringify(OptionStatus));
+    sessionStorage.setItem("selected-options",JSON.stringify(OptionStatus));
+    window.location = "../pages/result-page.html";
 }

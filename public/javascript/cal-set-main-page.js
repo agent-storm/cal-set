@@ -20,13 +20,14 @@
 
 // import {app,getFirestore,collection,addDoc} from "../javascript/firebase-init.js";
 
+// import { Timestamp } from "@firebase/firestore";
 import { 
     getFirestore,
     collection,
     addDoc,query, 
     getDocs, 
     deleteDoc, 
-    doc
+    Timestamp
  } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 function ScrappingInit() {
@@ -54,7 +55,8 @@ function ScrappingInit() {
         else if (timeframe == "1m") days_to_add = 30;
         else if (timeframe == "full") end_lte = "full"; //We pass end_lte as "full" when calling the ClistApiCalls() method.
 
-    } else { // Id no Preset option in chosen, proceed with the usual procedure.
+    } else { 
+        // Ifno Preset option in chosen, proceed with the usual procedure.
         for (let id in OptionStatus["timeframe"]) {
             if (OptionStatus["timeframe"][id] == 1) time_frame = id;
         }
@@ -159,7 +161,7 @@ async function DeleteDocs(collectionPath) {
 async function WeekelyScrapper() {
     let date_ = new Date();
     let start_gte = date_.toISOString();
-    let platforms_list = ["codechef","codeforces","leetcode",'gfg']; // For testing sake
+    let platforms_list = ["codechef"]; // For testing sake
     const db = getFirestore();
     console.log("WeekelyScrapper init");
     await DeleteDocs("testcol"); // Delete previous records so we can add new records weekely
@@ -178,9 +180,9 @@ async function WeekelyScrapper() {
                 const docRef = await addDoc(collection(db, "testcol"), {
                     Platform:platform_name,
                     Contest:contest_name,
-                    Start:contest["start"],
-                    End:contest["end"],
-                    Duration:contest_duration,
+                    Start:Timestamp.fromDate(new Date(contest["start"])),
+                    End:Timestamp.fromDate(new Date(contest["end"])),
+                    Duration:parseInt(contest_duration),
                     Link:contest_link
                 });
                 console.log("Document written with ID: ", docRef.id);
@@ -193,9 +195,10 @@ async function WeekelyScrapper() {
     }
 }
 
+
 // handling all the button click events.
 const dbBtn = document.getElementById("db-btn");
-const goBtn = document.getElementById("go-btn");
+// const goBtn = document.getElementById("go-btn");
 
 dbBtn.addEventListener("click",WeekelyScrapper);
-goBtn.addEventListener('click',ScrappingInit);
+// goBtn.addEventListener('click',ScrappingInit);
