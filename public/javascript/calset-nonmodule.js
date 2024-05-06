@@ -10,7 +10,7 @@ const OptionStatus = {
         "codechef-btn":0,
         "codeforces-btn":0,
         "leetcode-btn":0,
-        "gfg-btn":0
+        "geeksforgeeks-btn":0
     },
     "preset" : {
         "codeforces-full-preset-btn":0,

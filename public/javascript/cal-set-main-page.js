@@ -18,23 +18,26 @@
 
 */
 
-// import {app,getFirestore,collection,addDoc} from "../javascript/firebase-init.js";
-
-// import { Timestamp } from "@firebase/firestore";
 import { 
     getFirestore,
     collection,
-    addDoc,query, 
+    addDoc,
     getDocs, 
     deleteDoc, 
-    Timestamp
+    Timestamp,
+    query,
+    where,
+    orderBy
  } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-function ScrappingInit() {
-    sessionStorage.clear();
+
+const db = getFirestore();
+
+async function ScrappingInit() {
+    // sessionStorage.removeItem("dataJSON");
     GoBtnController("logo"); // Change the Go button inner html to a loading gif.
     
-    TransferChosenOptions();
+    TransferChosenOptions(); //Stores the user chosen options in sessionStorage so that we can access it here.
 
 
     let optionSelection = JSON.parse(sessionStorage.getItem("selected-options")); // This is a JSON file that stores the user selected options.
@@ -63,9 +66,9 @@ function ScrappingInit() {
         //timefram == "full" you can only pass the start_gte and not give the end_lte value 
         // to get all the available future contests, but it has to have a modified 
         // GET req URL.
-        if(timeframe == "1w") days_to_add = 7;
-        else if (timeframe == "2w") days_to_add = 14;
-        else if (timeframe == "1m") days_to_add = 30;
+        if      (timeframe == "1w")   days_to_add = 7;
+        else if (timeframe == "2w")   days_to_add = 14;
+        else if (timeframe == "1m")   days_to_add = 30;
         else if (timeframe == "full") end_lte = "full"; //We pass end_lte as "full" when calling the ClistApiCalls() method.
 
     } 
@@ -107,9 +110,28 @@ function ScrappingInit() {
     console.log(platforms_selected,start_gte,end_lte)
     //TODO:We have the threee options, printed above in the console .log statement. 
     //Next step is to make queries based on these three options.
-    
-    
-
+    const dbReference = collection(db,"testcol");
+    const dataJson = {};
+    for(const index in platforms_selected){
+        console.log(platforms_selected[index]);
+        const queryRes = await query(
+            dbReference,
+            where("Platform","==",platforms_selected[index]),
+            where("Start",">=",Timestamp.fromDate(new Date(start_gte))),
+            where("End","<=",Timestamp.fromDate(new Date(end_lte))),
+            orderBy("Start")
+        );
+        const querySnapshot= await(getDocs(queryRes));
+        dataJson[platforms_selected[index]] = [];
+        querySnapshot.forEach((doc)=>{
+            dataJson[platforms_selected[index]].push(doc.data());
+        });
+        
+    };
+    console.log(dataJson);
+    GoBtnController("go");
+    sessionStorage.setItem("dataJSON",JSON.stringify(dataJson));
+    window.location = "../pages/result-page.html";
     //The following block of code is used to make CLIST API requests for the reqiired data.
     // ClistApiCalls(start_gte, end_lte,platforms_selected)
     // .then(result => {
@@ -165,7 +187,7 @@ function ClistApiCalls(start_gte, end_lte,platforms_selected){
 }
 
 async function DeleteDocs(collectionPath) {
-    const db = getFirestore();
+
     const q = query(collection(db, collectionPath));
 
     const querySnapshot = await getDocs(q);
@@ -183,8 +205,8 @@ async function DeleteDocs(collectionPath) {
 async function WeekelyScrapper() {
     let date_ = new Date();
     let start_gte = date_.toISOString();
-    let platforms_list = ["codechef"]; // For testing sake
-    const db = getFirestore();
+    let platforms_list = ["codechef","leetcode","codeforces","gfg"]; // For testing sake, can add all the platform names.
+
     console.log("WeekelyScrapper init");
     await DeleteDocs("testcol"); // Delete previous records so we can add new records weekely
     try {
@@ -200,7 +222,7 @@ async function WeekelyScrapper() {
             // Adding document to Firestore
             try {
                 const docRef = await addDoc(collection(db, "testcol"), {
-                    Platform:platform_name,
+                    Platform:platform_name.toLowerCase(),
                     Contest:contest_name,
                     Start:Timestamp.fromDate(new Date(contest["start"])),
                     End:Timestamp.fromDate(new Date(contest["end"])),

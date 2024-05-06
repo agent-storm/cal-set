@@ -1,11 +1,28 @@
 let all_list_items = "";
-let contestList = "";
+
 // let contests = JSON.parse(sessionStorage.getItem("response")); //Get the JSON data of contests.
+
+const dataJson = JSON.parse(sessionStorage.getItem("dataJSON"));
+if(!dataJson){alert("Somethign went wrong, cannot fetch data, please try again"); window.location="../pages/calset.html";}
 
 //After processing the contests data is stored in the "data" 2D array.
 const data = [
     ["platform_name", "contest_name", "contest_duration","contest_date", "contest_time", "contest_link"]
 ];
+
+Object.keys(dataJson).forEach((platform)=>{
+  dataJson[platform].forEach((data)=>{
+    console.log(data);
+    console.log(data["Start"]);
+    // const date = new Date(data["Start"]["seconds"]*1000);
+    const utcDate = new Date(data[""].getTime())
+    const localDate = date.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+    console.log(localDate);
+
+    all_list_items += `<li class=\"contest-list-item\"><a target="_blank" href=\"${data["Link"]}\" class=\"contest-link\"><button class=\"contest-details-button\"><span class=\"platform-name contest-details\">${data["Platform"]}</span> <span class=\"contest-name contest-details\">${data["Contest"]}</span> <span class=\"contest-date-time contest-details\">${"test"}</span> <span class=\"contest-duration contest-details\">${data["Duration"]}mins</span></button></li>`
+  });
+});
+
 
 //The following oiece of code will process the JSON data and store each contest details in the "data" array
 // Object.values(contests).forEach((contest)=> {
