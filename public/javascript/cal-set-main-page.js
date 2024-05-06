@@ -114,13 +114,20 @@ async function ScrappingInit() {
     const dataJson = {};
     for(const index in platforms_selected){
         console.log(platforms_selected[index]);
-        const queryRes = await query(
-            dbReference,
-            where("Platform","==",platforms_selected[index]),
-            where("Start",">=",Timestamp.fromDate(new Date(start_gte))),
-            where("End","<=",Timestamp.fromDate(new Date(end_lte))),
-            orderBy("Start")
-        );
+        if(end_lte == "full"){
+            var queryRes = await query(
+                dbReference,
+                where("Platform","==",platforms_selected[index]),
+            );
+        } else {
+            var queryRes = await query(
+                dbReference,
+                where("Platform","==",platforms_selected[index]),
+                where("Start",">=",Timestamp.fromDate(new Date(start_gte))),
+                where("End","<=",Timestamp.fromDate(new Date(end_lte))),
+                orderBy("Start")
+            );
+        }
         const querySnapshot= await(getDocs(queryRes));
         dataJson[platforms_selected[index]] = [];
         querySnapshot.forEach((doc)=>{

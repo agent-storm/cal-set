@@ -12,14 +12,9 @@ const data = [
 
 Object.keys(dataJson).forEach((platform)=>{
   dataJson[platform].forEach((data)=>{
-    console.log(data);
-    console.log(data["Start"]);
-    // const date = new Date(data["Start"]["seconds"]*1000);
     const utcDate = new Date(data["Start"]["seconds"]*1000 + (5.5 * 60 * 60 * 1000));
     const localDate = utcDate.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-    console.log(localDate);
-
-    all_list_items += `<li class=\"contest-list-item\"><a target="_blank" href=\"${data["Link"]}\" class=\"contest-link\"><button class=\"contest-details-button\"><span class=\"platform-name contest-details\">${data["Platform"]}</span> <span class=\"contest-name contest-details\">${data["Contest"]}</span> <span class=\"contest-date-time contest-details\">${localDate.replace(",","")}</span><span class=\"contest-duration contest-details\">${data["Duration"]}mins</span></button></li>`
+    all_list_items += `<li class=\"contest-list-item\"><a target="_blank" href=\"${data["Link"]}\" class=\"contest-link\"><button class=\"contest-details-button\"><span class=\"platform-name contest-details\">${data["Platform"][0].toUpperCase()+data["Platform"].slice(1)}</span> <span class=\"contest-name contest-details\">${data["Contest"]}</span> <span class=\"contest-date-time contest-details\">${localDate.replace(",","")}</span><span class=\"contest-duration contest-details\">${data["Duration"]+" mins"}</span></button></li>`
   });
 });
 
