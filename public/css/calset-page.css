@@ -163,3 +163,72 @@ body{
     background-color: var(--hover-button-color);
 }
 
+@media(max-width:1000px) {
+    .main-container-div {
+        height:100%;
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 10vh;
+    }
+    .options-container-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height:80%;
+    }
+    .options-div {
+        height: 100%;
+        width:98%;
+
+        margin-top:1vh;
+        margin-bottom: 1vh;
+    }
+    
+    .options-title-div{
+        font-size:7vw;
+    }
+    .options-list {
+        margin-top:0.5vh;
+        margin-bottom: 0.5vh;
+    }
+    .preset-options-button-list {
+        height: 40vh;
+    }
+    .option-button {
+        font-size: 5vw;
+    }
+    .desc-gobtn-div {
+        height:100%;
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .desc-div {
+        height: 20vh;
+        width: 100%;
+        
+    }
+    .desc-text {
+        font-size: 6vw;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .gobtn-div {
+        width:100%;
+    }
+    .gobtn {
+        height: 20vh;
+        width: 95%;
+        margin-top:1vh;
+
+        font-size: 15vw;
+    }
+}
