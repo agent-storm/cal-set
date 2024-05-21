@@ -1,3 +1,12 @@
+
+.roboto-mono {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+
 :root {
     --primary-bg:#002b35;
     --secondary-bg:#003f46;
@@ -6,12 +15,14 @@
     --options-button-color:#007785;
     --hover-button-color:#F8FFE5;
 }
+
 body{
     cursor: url('../assets/icons8-select-cursor-35.png'), auto;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--primary-bg);
+    font-family: "Roboto Mono", monospace;
 }
 ::-webkit-scrollbar {
     width: 0;  /* Remove scrollbar space */
@@ -123,11 +134,12 @@ body{
     margin-top: 1vh;
 }
 .desc-div {
-    width: 70%;
+    width: 67%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 1vw;
 }
 .gobtn-div {
     width: 30%;
@@ -135,6 +147,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+
+    margin-right: 1vw;
 }
 .desc-text {
     height: 95%;
@@ -142,10 +156,11 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     background-color: var(--options-button-color);
-    margin: 2vw;
+    
     border-radius: 20px;
-
+    text-wrap:balance;
     font-size: 1.5vw;
 }
 .gobtn {
