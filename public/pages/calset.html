@@ -8,59 +8,38 @@
     
     <script src="../javascript/firebase-init.js" type="module"></script>
     
-    <script src="../javascript/calset-nonmodule.js"></script>
+    <script src="../javascript/calset-nonmodule.js" defer></script>
     
     <script src="../javascript/calset-helper.js" ></script>
     <script src="../javascript/cal-set-main-page.js" type="module" defer></script>
 
-    <link rel="stylesheet" href="../css/cal-set.css" >
+    <link rel="stylesheet" href="../css/calset-page.css" >
     <link rel="icon" type="image/x-icon" href="../assets/icon-512-maskable.png">
 </head>
 <body>
-    <div id="loading-text-div" style="font-size: 50px; position: absolute;"></div>
+    <!-- <h1>This is just a test site, I will be developing this page now, click the logout button below to go back to the login page, please try to login again to check if its working consistantly<br>Thank you</h1> -->
+    <!-- <button id="logout-btn" onclick="SignOutPressed()">Logout</button> -->
     <div class="main-container-div">
         <div class="options-container-div">
-            <div class="timeframe-options-div options-div">
-                <div class="options-title">
-                    Timeframe
-                </div>
-                <div class="options-buttons-list">
-                    <ul class="timeframe-options-list options-list">
-                        <li class="timeframe-item options-list-item"><div class="list-item-div"><button class="option-button" id ="one-week-btn" onclick="OptionChosen('timeframe','one-week-btn')">ONE WEEK</button></div></li>
-                        <li class="timeframe-item options-list-item"><div class="list-item-div"><button class="option-button" id ="one-month-btn" onclick="OptionChosen('timeframe','one-month-btn')">ONE MONTH</button></div></li>
-                        <li class="timeframe-item options-list-item"><div class="list-item-div"><button class="option-button" id ="two-week-btn" onclick="OptionChosen('timeframe','two-week-btn')">TWO WEEKS</button></div></li>
-                        <!-- <li ><button id="test-btn">CLICKMEBRO</button></li>
-                        <li ><button id="test-btn1" onclick="foo()">CLICKMEBRO2</button></li> -->
-                        <!-- <li class="timeframe-item options-list-item"><button class="option-button">WEEK</button></li> -->
-                        <!-- <li class="custom-timeframe-item">
-                            <div class="custom-timeframe-div">
-                                <h3 class="custom-timeframe-heading-text">Custom TimeFrame</h1>
-                                <div class="start-date-div"><span class="start-time-heading custom-time-headings">Start: <input type="text" class="two-digit-date-input">-<input type="text" class="two-digit-date-input">-<input type="text" class="four-digit-date-input"></span></div>
-                                <div class="end-date-div"><span class="end-time-heading custom-time-headings">End: <input type="text" class="two-digit-date-input">-<input type="text" class="two-digit-date-input">-<input type="text" class="four-digit-date-input"></span></div>
-                            </div>
-                        </li> -->
-                    </ul>
-                </div>
+            <div class="options-div timeframe-options-div">
+                <div class="options-title-div">TIMEFRAME</div>
+                <ul class="timeframe-options-list options-list">
+                    <li class="timeframe-item options-list-item"><div class="list-item-div"><button class="option-button" id ="one-week-btn" onclick="OptionChosen('timeframe','one-week-btn')">ONE WEEK</button></div></li>
+                    <li class="timeframe-item options-list-item"><div class="list-item-div"><button class="option-button" id ="one-month-btn" onclick="OptionChosen('timeframe','one-month-btn')">ONE MONTH</button></div></li>
+                    <li class="timeframe-item options-list-item"><div class="list-item-div"><button class="option-button" id ="two-week-btn" onclick="OptionChosen('timeframe','two-week-btn')">TWO WEEKS</button></div></li>
+                </ul>
             </div>
-            
-            <div class="platforms-options-div options-div">
-                <div class="options-title">
-                    Platform
-                </div>
-                <div class="options-buttons-list">
-                    <ul class="platform-options-list options-list">
-                        <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="codechef-btn" onclick="OptionChosen('platform','codechef-btn')">CodeChef</button></div></li>
-                        <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="codeforces-btn" onclick="OptionChosen('platform','codeforces-btn')">CodeForces</button></div></li>
-                        <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="leetcode-btn" onclick="OptionChosen('platform','leetcode-btn')">LeetCode</button></div></li>
-                        <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="geeksforgeeks-btn" onclick="OptionChosen('platform','geeksforgeeks-btn')">Geeks for Geeks</button></div></li>
-                    </ul>
-                </div>
+            <div class="options-div platform-options-div">
+                <div class="options-title-div">PLATFORMS</div>
+                <ul class="platform-options-list options-list">
+                    <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="codechef-btn" onclick="OptionChosen('platform','codechef-btn')">CodeChef</button></div></li>
+                    <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="codeforces-btn" onclick="OptionChosen('platform','codeforces-btn')">CodeForces</button></div></li>
+                    <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="leetcode-btn" onclick="OptionChosen('platform','leetcode-btn')">LeetCode</button></div></li>
+                    <li class="platform-item options-list-item"><div class="list-item-div"><button class="option-button" id="geeksforgeeks-btn" onclick="OptionChosen('platform','geeksforgeeks-btn')">Geeks for Geeks</button></div></li>
+                </ul>
             </div>
-            
-            <div class="preset-options-div options-div">
-                <div class="options-title">
-                    Presets
-                </div>
+            <div class="options-div preset-options-div">
+                <div class="options-title-div">PRESETS</div>
                 <div class="options-buttons-list preset-options-button-list">
                     <ul class="preset-options-list options-list">
                         <li class="preset-item options-list-item"><div class="list-item-div"><button class="option-button" id="codeforces-full-preset-btn" onclick="OptionChosen('preset','codeforces-full-preset-btn')">CodeForces Full</button></div></li>
@@ -71,24 +50,15 @@
                         <li class="preset-item options-list-item"><div class="list-item-div"><button class="option-button" id="codechef-1w-preset-btn" onclick="OptionChosen('preset','codechef-1w-preset-btn')">Codechef 1 Week</button></div></li>
                         <li class="preset-item options-list-item"><div class="list-item-div"><button class="option-button" id="leetcode-1w-preset-btn" onclick="OptionChosen('preset','leetcode-1w-preset-btn')">Leetcode 1 Week</button></div></li>
                         <li class="preset-item options-list-item"><div class="list-item-div"><button class="option-button" id="gfg-1w-preset-btn" onclick="OptionChosen('preset','gfg-1w-preset-btn')">Geeks for Geeks 1 Week</button></div></li>
-                        <!-- <li class="preset-item options-list-item"><button class="option-button">WEEK</button></li> -->
+                        
                     </ul>
                 </div>
             </div>
         </div>
-
-        <div class="desc-btn-container-div">
-            <div class="action-discription-div">
-                <p class="action-discription" id="action-discription">  This is where a short description of the options you choose will appear.</p>
-            </div>
-            <div class="desc-btn-div" >
-                <button class="go-btn" id="go-btn">LIVE GO!</button>
-                <button class="go-btn" id="db-btn">DB GO!</button>
-            </div>
+        <div class="desc-gobtn-div">
+            <div class="desc-div"><p class="desc-text" id="action-description">  This is where a short description of the options you choose will appear.</p></div>
+            <div class="gobtn-div"><button class="gobtn" id="go-btn">GO</button></div>
         </div>
     </div>
-    <!-- <h1>This is just a test site, I will be developing this page now, click the logout button below to go back to the login page, please try to login again to check if its working consistantly<br>Thank you</h1> -->
-    <!-- <button id="logout-btn" onclick="SignOutPressed()">Logout</button> -->
-    
 </body>
 </html>

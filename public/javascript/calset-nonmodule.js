@@ -26,26 +26,31 @@ const OptionStatus = {
     }
 }
 
+var style_props = getComputedStyle(document.documentElement);
+
+var default_btn_color = style_props.getPropertyValue('--options-button-color');
+var chosen_btn_color = style_props.getPropertyValue("--hover-button-color");
+
 function OptionsDeselector(options_name){
     switch(options_name){
         case "timeframe":
             for (var id in OptionStatus["timeframe"]){
                 var tempBtn = document.getElementById(id);
-                tempBtn.style.backgroundColor = "#A9ACA9";
+                tempBtn.style.backgroundColor = default_btn_color;
                 OptionStatus["timeframe"][id] = 0;
             }
             break;
         case "platform":
             for (var id in OptionStatus["platform"]){
                 var tempBtn = document.getElementById(id);
-                tempBtn.style.backgroundColor = "#A9ACA9";
+                tempBtn.style.backgroundColor = default_btn_color;
                 OptionStatus["platform"][id] = 0;
             }
             break;
         case "preset":
             for (var id in OptionStatus["preset"]){
                 var tempBtn = document.getElementById(id);
-                tempBtn.style.backgroundColor = "#A9ACA9";
+                tempBtn.style.backgroundColor = default_btn_color;
                 OptionStatus["preset"][id] = 0;
             }
             preset_options = "";
@@ -62,7 +67,7 @@ function OptionChosen(section,btnId) {
         for (var id in OptionStatus["preset"]){
             if(id!=btnId){
                 var tempBtn = document.getElementById(id);
-                tempBtn.style.backgroundColor = "#A9ACA9";
+                tempBtn.style.backgroundColor = default_btn_color;
                 OptionStatus["preset"][id] = 0;
             }
         }
@@ -76,7 +81,7 @@ function OptionChosen(section,btnId) {
         for (var id in OptionStatus["timeframe"]){
             if(id!=btnId){
                 var tempBtn = document.getElementById(id);
-                tempBtn.style.backgroundColor = "#A9ACA9";
+                tempBtn.style.backgroundColor = default_btn_color;
                 OptionStatus["timeframe"][id] = 0;
             }
         }
@@ -84,11 +89,11 @@ function OptionChosen(section,btnId) {
 
     if(OptionStatus[section][btnId] == 0){
         OptionStatus[section][btnId] = 1;
-        btn.style.backgroundColor = "#DD1155";
+        btn.style.backgroundColor = chosen_btn_color;
     }
     else {
         OptionStatus[section][btnId] = 0;
-        btn.style.backgroundColor = "#A9ACA9";
+        btn.style.backgroundColor = default_btn_color;
     }
     console.log("OptionCHosenFunc:",OptionStatus, preset_options);
     DescUpdate();

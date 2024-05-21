@@ -41,13 +41,8 @@ function DescUpdate() {
         }
     }
     let desc = `You have chosen the platforms <u>${platforms_chosen}</u> for the timeframe <u>${time_chosen}</u>`;
-    let desc_box = document.getElementById("action-discription");
+    let desc_box = document.getElementById("action-description");
     desc_box.innerHTML = "";
     desc_box.innerHTML = desc;
 
 }
-
-function hellobaby(){
-    console.log("Hello");
-    alert("helper-here/");
-  }

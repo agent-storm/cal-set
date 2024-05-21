@@ -169,11 +169,9 @@ body{
         justify-content: flex-start;
         align-items: center;
     }
-
     .content-container-div {
         margin:0;
     }
-
     .title-div {
         display: flex;
         flex-direction: column;
@@ -203,5 +201,35 @@ body{
     .secondary-text {
         margin-top: 3vh;
         font-size: 10vw;
+    }
+    .description-title {
+        font-size: 10vw;
+    }
+    .description-text {
+        font-size: 4vw;
+    }
+    .working-title-text {
+        font-size: 10vw;
+    }
+    .general-working-text {
+        font-size: 4vw;
+    }
+    .tools-used-title {
+        font-size: 10vw;
+        margin-bottom: 0;
+    }
+    .tools-used-list {
+        font-size: 4vw;
+        
+    }
+    .apis-used-title {
+        font-size: 10vw;
+        margin-bottom: 0;
+    }
+    .apis-used-list {
+        font-size: 4vw;
+    }
+    .contact-me-title {
+        
     }
 }
