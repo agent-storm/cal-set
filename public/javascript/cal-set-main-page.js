@@ -17,6 +17,7 @@
     PS: Watch Course on YT.
 
 */
+var cron = require('node-cron');
 
 import { 
     getFirestore,
@@ -31,7 +32,9 @@ import {
  } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
 
+
 const db = getFirestore();
+
 
 async function ScrappingInit() {
     // sessionStorage.removeItem("dataJSON");
@@ -106,7 +109,6 @@ async function ScrappingInit() {
         date_.setDate(date_.getDate() + days_to_add);
         end_lte = date_.toISOString();
     }
-
     console.log(platforms_selected,start_gte,end_lte)
     //TODO:We have the threee options, printed above in the console .log statement. 
     //Next step is to make queries based on these three options.
@@ -207,8 +209,6 @@ async function DeleteDocs(collectionPath) {
     await Promise.all(batch);
     console.log('All documents in the collection have been deleted.');
 }
-
-
 async function WeekelyScrapper() {
     let date_ = new Date();
     let start_gte = date_.toISOString();
@@ -245,6 +245,10 @@ async function WeekelyScrapper() {
         console.error("Error fetching contests: ", error);
     }
 }
+
+cron.schedule("",()=>{
+    WeekelyScrapper();
+});
 
 
 // handling all the button click events.

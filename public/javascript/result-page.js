@@ -4,7 +4,7 @@ let all_list_items = "";
 
 const dataJson = JSON.parse(sessionStorage.getItem("dataJSON"));
 if(!dataJson){alert("Somethign went wrong, cannot fetch data, please try again"); window.location="../pages/calset.html";}
-
+console.log(dataJson);
 //After processing the contests data is stored in the "data" 2D array.
 const data = [
     ["platform_name", "contest_name", "contest_duration","contest_date", "contest_time", "contest_link"]
@@ -106,55 +106,106 @@ function handleAuthClick() {
     }
 }
 
-
+//test method
 async function CreateEvents() {
-    console.log("EventCreator");
-    Object.values(contests).forEach((contest)=>{
-        const startDate = new Date(contest["start"] + "Z");
-        const endDate = new Date(contest["end"] + "Z");
-        const indianTimeZone = "Asia/Kolkata";
-        const startDateString = startDate.toLocaleString("en-IN", { timeZone: indianTimeZone,hour12: false});
-        const endDateString = endDate.toLocaleString("en-IN", { timeZone: indianTimeZone,hour12: false});
-
-        function DateFormator(date) {
-          let splitter = date.split(", ");
-          let dates = splitter[0].split("/");
-          let Finaldate = dates[2]+"-"+dates[1]+"-"+dates[0]+"T"+splitter[1];
-          return Finaldate;
-        }
-        
+  console.log("EventCreator");
+  Object.keys(dataJson).forEach((platform)=>{
+    dataJson[platform].forEach((contest)=>{
+        const utcstartDate = new Date(contest["Start"]["seconds"]*1000);
+        const utcendDate = new Date(contest["End"]["seconds"]*1000);
+        // const localstartDate = utcstartDate.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }).toISOString();
+        // const localendDate = utcendDate.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+        const localstartDate = utcstartDate.toISOString();
+        const localendDate = utcendDate.toISOString();
         const event = {
-            'summary': `${(contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1)}-${contest["event"]}`,
-            'location': '',
-            'description': `Link:${contest["href"]}, Duration: ${parseInt(contest["duration"])/60 + " mins"}`,
-            'start': {
-              'dateTime': `${DateFormator(startDateString)}`, // Adjusted for Indian Timezone (IST)
-              'timeZone': 'Asia/Kolkata'
-            },
-            'end': {
-              'dateTime': `${DateFormator(endDateString)}`, // Adjusted for Indian Timezone (IST)
-              'timeZone': 'Asia/Kolkata'
-            },
-            'recurrence': [
-              'RRULE:FREQ=DAILY;COUNT=1'
-            ],
-            'reminders': {
-              'useDefault': false,
-              'overrides': [
-                // {'method': 'email', 'minutes': 24 * 60},
-                {'method': 'popup', 'minutes': 30}
-              ]
-            }
-          };
-        console.log(event);
-        const request = gapi.client.calendar.events.insert({
-          'calendarId': 'primary',
-          'resource': event
-        });
-        request.execute(function(event) {
-          console.log('Event created: ' + event.htmlLink);
-        });
+          'summary': `${(contest["Platform"].split(".")[0]).charAt(0).toUpperCase() + (contest["Platform"].split(".")[0]).slice(1)}-${contest["Contest"]}`,
+          'location': '',
+          'description': `Link:${contest["Link"]}, Duration: ${parseInt(contest["Duration"])/60 + " mins"}`,
+          'start': {
+            'dateTime': `${localstartDate}`, // Adjusted for Indian Timezone (IST)
+            'timeZone': 'Asia/Kolkata'
+          },
+          'end': {
+            'dateTime': `${localendDate}`, // Adjusted for Indian Timezone (IST)
+            'timeZone': 'Asia/Kolkata'
+          },
+          'recurrence': [
+            'RRULE:FREQ=DAILY;COUNT=1'
+          ],
+          'reminders': {
+            'useDefault': false,
+            'overrides': [
+              // {'method': 'email', 'minutes': 24 * 60},
+              {'method': 'popup', 'minutes': 30}
+            ]
+          }
+        };
+      console.log(event);
+      const request = gapi.client.calendar.events.insert({
+        'calendarId': 'primary',
+        'resource': event
+      });
+      request.execute(function(event) {
+        console.log('Event created: ' + event.htmlLink);
+      });
+
     });
-    alert("Contests added to your account successfully, please check and verify, thank you for using the App.");
+  });
+  alert("Contests added to your account successfully, please check and verify, thank you for using the App.");
 }
+
+
+//original code method:
+// async function CreateEvents() {
+//     console.log("EventCreator");
+//     Object.values(contests).forEach((contest)=>{
+//         const startDate = new Date(contest["start"] + "Z");
+//         const endDate = new Date(contest["end"] + "Z");
+//         const indianTimeZone = "Asia/Kolkata";
+//         const startDateString = startDate.toLocaleString("en-IN", { timeZone: indianTimeZone,hour12: false});
+//         const endDateString = endDate.toLocaleString("en-IN", { timeZone: indianTimeZone,hour12: false});
+
+//         function DateFormator(date) {
+//           let splitter = date.split(", ");
+//           let dates = splitter[0].split("/");
+//           let Finaldate = dates[2]+"-"+dates[1]+"-"+dates[0]+"T"+splitter[1];
+//           return Finaldate;
+//         }
+        
+//         const event = {
+//             'summary': `${(contest["host"].split(".")[0]).charAt(0).toUpperCase() + (contest["host"].split(".")[0]).slice(1)}-${contest["event"]}`,
+//             'location': '',
+//             'description': `Link:${contest["href"]}, Duration: ${parseInt(contest["duration"])/60 + " mins"}`,
+//             'start': {
+//               'dateTime': `${DateFormator(startDateString)}`, // Adjusted for Indian Timezone (IST)
+//               'timeZone': 'Asia/Kolkata'
+//             },
+//             'end': {
+//               'dateTime': `${DateFormator(endDateString)}`, // Adjusted for Indian Timezone (IST)
+//               'timeZone': 'Asia/Kolkata'
+//             },
+//             'recurrence': [
+//               'RRULE:FREQ=DAILY;COUNT=1'
+//             ],
+//             'reminders': {
+//               'useDefault': false,
+//               'overrides': [
+//                 // {'method': 'email', 'minutes': 24 * 60},
+//                 {'method': 'popup', 'minutes': 30}
+//               ]
+//             }
+//           };
+//         console.log(event);
+//         const request = gapi.client.calendar.events.insert({
+//           'calendarId': 'primary',
+//           'resource': event
+//         });
+//         request.execute(function(event) {
+//           console.log('Event created: ' + event.htmlLink);
+//         });
+//     });
+//     alert("Contests added to your account successfully, please check and verify, thank you for using the App.");
+// }
+
+
 
