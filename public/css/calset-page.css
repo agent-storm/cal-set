@@ -1,0 +1,249 @@
+
+.roboto-mono {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+
+:root {
+    --primary-bg:#002b35;
+    --secondary-bg:#003f46;
+    --options-panel-bg:#004952;
+    /* --options-panel-bg:#004e57; */
+    --options-button-color:#007785;
+    --hover-button-color:#F8FFE5;
+}
+
+body{
+    cursor: url('../assets/icons8-select-cursor-35.png'), auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-bg);
+    font-family: "Roboto Mono", monospace;
+}
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+.main-container-div {
+    background-color: #025264;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-bg);
+    flex-direction: column;
+    height:85vh;
+    width:80vw;
+    margin-top: 10vh;
+    border-radius: 30px;
+}
+.options-container-div {
+    display: flex;
+    flex-direction: row;
+    height: 65vh;
+    width: 98%;
+    margin-top:1vh;
+    /* margin-bottom: 1vh; */
+    
+}
+.options-div {
+    height:100%;
+    width: 100%;
+    background-color: var(--options-panel-bg);
+    margin-left: 1vw;
+    margin-right:1vw;
+    border-radius:30px;
+}
+.options-title-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:1.8vw;
+    height: 10%;
+    width:100%
+}
+.options-list {
+    list-style-type: none;
+    height: 80%;
+    width:100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding:0;
+    margin-bottom: 0;
+}
+.options-buttons-list {
+    height: 80%;
+    width:100%;
+}
+
+.options-list-item {
+    height: 6.2vh;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:0.5vh;
+    margin-bottom:0.5vh;
+
+}
+.list-item-div {
+    height: 100%;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.option-button {
+    height:6vh;
+    width:95%;
+    background-color:var(--options-button-color);
+
+    border-style: none;
+    border-radius: 20px;
+
+    font-size: 1.5vw;
+
+    transition: 0.5s;
+}
+
+.option-button:hover {
+    background-color: var(--hover-button-color);
+}
+.preset-options-list {
+    overflow-y: scroll;
+    height: 100%;
+    width: 100%;
+
+}
+
+.desc-gobtn-div {
+    
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction:row;
+
+    margin-top: 1vh;
+}
+.desc-div {
+    width: 67%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1vw;
+}
+.gobtn-div {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 1vw;
+}
+.desc-text {
+    height: 95%;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--options-button-color);
+    
+    border-radius: 20px;
+    text-wrap:balance;
+    font-size: 1.5vw;
+}
+.gobtn {
+    height: 95%;
+    width: 95%;
+    border-radius: 20px;
+    background-color: #007785;
+    border-style: none;
+
+    font-size: 3vw;
+
+    transition: 0.5s;
+}
+.gobtn:hover {
+    background-color: var(--hover-button-color);
+}
+
+@media(max-width:1000px) {
+    .main-container-div {
+        height:100%;
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 10vh;
+    }
+    .options-container-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height:80%;
+    }
+    .options-div {
+        height: 100%;
+        width:98%;
+
+        margin-top:1vh;
+        margin-bottom: 1vh;
+    }
+    
+    .options-title-div{
+        font-size:7vw;
+    }
+    .options-list {
+        margin-top:0.5vh;
+        margin-bottom: 0.5vh;
+    }
+    .preset-options-button-list {
+        height: 40vh;
+    }
+    .option-button {
+        font-size: 5vw;
+    }
+    .desc-gobtn-div {
+        height:100%;
+        width:100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .desc-div {
+        height: 20vh;
+        width: 100%;
+        
+    }
+    .desc-text {
+        font-size: 6vw;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .gobtn-div {
+        width:100%;
+    }
+    .gobtn {
+        height: 20vh;
+        width: 95%;
+        margin-top:1vh;
+
+        font-size: 15vw;
+    }
+}

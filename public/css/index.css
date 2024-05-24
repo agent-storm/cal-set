@@ -1,3 +1,16 @@
+:root {
+    --primary-bg:#002b35;
+    --secondary-bg:#003f46;
+    --options-panel-bg:#004952;
+    /* --options-panel-bg:#004e57; */
+    --options-button-color:#007785;
+    --contest-details-bg:#F8FFE5;
+    --contest-buttons-bg:#F8FFE5;
+    --primary-heading-color:#F8FFE5;
+    --hover-button-color:#ff1a66;
+}
+
+
 ::-webkit-scrollbar {
     width: 0;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
@@ -20,13 +33,13 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #2F2235;
+    background-color: var(--primary-bg);
 }
 .main-container-div {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: #3F3244;
+    background-color: var(--secondary-bg);
     flex-direction: column;
     height:80vh;
     width:80vw;
@@ -51,7 +64,7 @@ body{
     
     font-size: 10vw;
     font-family: "Audiowide", sans-serif;
-    color: #BFC3BA;
+    color: var(--primary-heading-color);
 }
 
 .next-page-btn-div {
@@ -69,7 +82,7 @@ body{
     width: 15vw;
     border-radius: 20px;
     font-family: "Ubuntu Mono", monospace;
-    background-color: #A9ACA9;
+    background-color: var(--options-button-color);
     color: #3F3244;
     font-size:1.5vw;
     transition: 0.5s;
@@ -77,7 +90,7 @@ body{
 .calset-page-button:hover {
     cursor: url('../assets/icons8-select-cursor-35.png'), auto;
     box-shadow: 8px 8px;
-    background-color: #da1154;
+    background-color: var(--hover-button-color);
     color: black;
 }
 .secondary-text{
@@ -85,7 +98,7 @@ body{
     margin-top: 1.5vh;
     font-family: "Ubuntu Mono", monospace;
     font-size: 2vw;
-    color: #BFC3BA;
+    color: var(--contest-details-bg);
 }
 /* .description-text {
     margin:0;
@@ -99,7 +112,7 @@ body{
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: #3F3244;
+    background-color: var(--secondary-bg);
     flex-direction: column;
     height:100%;
     width:80vw;
@@ -169,11 +182,9 @@ body{
         justify-content: flex-start;
         align-items: center;
     }
-
     .content-container-div {
         margin:0;
     }
-
     .title-div {
         display: flex;
         flex-direction: column;
@@ -203,5 +214,35 @@ body{
     .secondary-text {
         margin-top: 3vh;
         font-size: 10vw;
+    }
+    .description-title {
+        font-size: 10vw;
+    }
+    .description-text {
+        font-size: 4vw;
+    }
+    .working-title-text {
+        font-size: 10vw;
+    }
+    .general-working-text {
+        font-size: 4vw;
+    }
+    .tools-used-title {
+        font-size: 10vw;
+        margin-bottom: 0;
+    }
+    .tools-used-list {
+        font-size: 4vw;
+        
+    }
+    .apis-used-title {
+        font-size: 10vw;
+        margin-bottom: 0;
+    }
+    .apis-used-list {
+        font-size: 4vw;
+    }
+    .contact-me-title {
+        
     }
 }

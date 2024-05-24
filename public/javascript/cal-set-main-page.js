@@ -248,8 +248,8 @@ async function WeekelyScrapper() {
 
 
 // handling all the button click events.
-const dbBtn = document.getElementById("db-btn");
+// const dbBtn = document.getElementById("db-btn");
 const goBtn = document.getElementById("go-btn");
 
-dbBtn.addEventListener("click",WeekelyScrapper);
+// dbBtn.addEventListener("click",WeekelyScrapper);
 goBtn.addEventListener('click',ScrappingInit);
