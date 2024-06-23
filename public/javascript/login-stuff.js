@@ -8,6 +8,9 @@ import {
 const auth = getAuth();
 function GoogleLoginPopup(){
     const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({
+        prompt: 'select_account'
+      });
     signInWithPopup(auth,provider);
 }
 function GithubLoginPopup(){
