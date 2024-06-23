@@ -256,7 +256,7 @@ function LogoutUser(){
     })
 }
 
-// WeekelyScrapper()
+// WeekelyScrapper();
 // cron.schedule("",()=>{
 //     WeekelyScrapper();
 // });
