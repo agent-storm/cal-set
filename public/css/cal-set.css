@@ -9,11 +9,16 @@ body{
     width: 0;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
+.sidebar-div {
+    position: absolute;
+    height:30vh;
+    
+}
 .main-container-div {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #3F3244;
+    /* background-color: #3F3244; */
     flex-direction: column;
     height:80vh;
     width:80vw;

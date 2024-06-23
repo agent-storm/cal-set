@@ -19,7 +19,7 @@
 body{
     cursor: url('../assets/icons8-select-cursor-35.png'), auto;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     background-color: var(--primary-bg);
     font-family: "Roboto Mono", monospace;
@@ -28,12 +28,53 @@ body{
     width: 0;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
 }
-.main-container-div {
-    background-color: #025264;
+
+.sidebar-div {
+    height: 30vw;
+    width: 10vw;
+    /* background-color: aqua; */
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--secondary-bg);
+}
+.sidebar-options-div {
+    /* height: 100%; */
+    width: 90%;
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:1vh;
+    margin-bottom: 3vh;
+
+}
+.logout-btn-div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout-btn {
+    height: 8vh;
+    width: 8vw;
+    background-color: var(--options-button-color);
+    border: none;
+    border-radius: 20px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1.2vw;
+    transition:0.5s;
+}
+.logout-btn:hover {
+    background-color: var(--hover-button-color);
+}
+.main-container-div {
+    /* background-color: #025264; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: var(--secondary-bg); */
     flex-direction: column;
     height:85vh;
     width:80vw;

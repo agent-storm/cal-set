@@ -12,6 +12,17 @@
     
     <script src="../javascript/calset-helper.js" ></script>
     <script src="../javascript/cal-set-main-page.js" type="module" defer></script>
+    <script type="module">
+        import {getAuth} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        const auth = getAuth();
+        // console.log(auth.currentUser);
+        auth.onAuthStateChanged((user)=>{
+            if(user == null){
+                window.location = "./login-page.html";
+            } 
+        });
+    </script>
+
 
     <link rel="stylesheet" href="../css/calset-page.css" >
     <link rel="icon" type="image/x-icon" href="../assets/icon-512-maskable.png">
@@ -23,6 +34,11 @@
 <body>
     <!-- <h1>This is just a test site, I will be developing this page now, click the logout button below to go back to the login page, please try to login again to check if its working consistantly<br>Thank you</h1> -->
     <!-- <button id="logout-btn" onclick="SignOutPressed()">Logout</button> -->
+    <div class="sidebar-div">
+        <div class="sidebar-options-div">
+            <div class="logout-btn-div"><button class="logout-btn " id="logout-btn">Logout</button></div>
+        </div>
+    </div> 
     <div class="main-container-div">
         <div class="options-container-div">
             <div class="options-div timeframe-options-div">

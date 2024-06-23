@@ -17,7 +17,7 @@
     PS: Watch Course on YT.
 
 */
-var cron = require('node-cron');
+// var cron = require('node-cron');
 
 import { 
     getFirestore,
@@ -30,11 +30,13 @@ import {
     where,
     orderBy
  } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
+import {getAuth,
+        signOut
+} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js"
 
 
 const db = getFirestore();
-
+const auth = getAuth();
 
 async function ScrappingInit() {
     // sessionStorage.removeItem("dataJSON");
@@ -246,14 +248,25 @@ async function WeekelyScrapper() {
     }
 }
 
-cron.schedule("",()=>{
-    WeekelyScrapper();
-});
+function LogoutUser(){
+    signOut(auth).then(()=>{
+        window.location = "../index.html";
+    }).catch((err)=>{
+        throw err;
+    })
+}
+
+// WeekelyScrapper()
+// cron.schedule("",()=>{
+//     WeekelyScrapper();
+// });
 
 
 // handling all the button click events.
 // const dbBtn = document.getElementById("db-btn");
 const goBtn = document.getElementById("go-btn");
+const logoutBtn = document.getElementById("logout-btn");
 
 // dbBtn.addEventListener("click",WeekelyScrapper);
 goBtn.addEventListener('click',ScrappingInit);
+logoutBtn.addEventListener('click',LogoutUser);

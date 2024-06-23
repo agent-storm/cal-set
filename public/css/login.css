@@ -1,3 +1,16 @@
+:root {
+    --primary-bg:#002b35;
+    --secondary-bg:#003f46;
+    --options-panel-bg:#004952;
+    /* --options-panel-bg:#004e57; */
+    --options-button-color:#007785;
+    --contest-details-bg:#F8FFE5;
+    --contest-buttons-bg:#F8FFE5;
+    --primary-heading-color:#F8FFE5;
+    --hover-button-color:#ff1a66;
+}
+
+
 body {
     cursor: url('../assets/icons8-select-cursor-35.png'), auto;
     display: flex;
@@ -6,7 +19,7 @@ body {
     width: 100%;
     justify-content: center;
     align-items: center;
-    background-color: #2F2235;
+    background-color: var(--primary-bg);
     padding:0;
     margin:0;
 }
@@ -16,7 +29,7 @@ body {
     height: 70vh;
     width: 80%;
     margin-top: 10%;
-    background: #3F3244;
+    background: var(--secondary-bg);
     border-radius: 30px;
     transition: 0.5s;
 }
@@ -27,9 +40,11 @@ body {
 .secondary-login-text {
     transition: 0.5s;
     color: #3F3244;
+    opacity: 0;
 }
 .main-bg:hover .secondary-login-text {
     color:#DD1155;
+    opacity: 100;
 }
 .main-bg:hover .login-options {
     opacity:100;
