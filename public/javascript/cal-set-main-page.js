@@ -212,6 +212,7 @@ async function DeleteDocs(collectionPath) {
     console.log('All documents in the collection have been deleted.');
 }
 async function WeekelyScrapper() {
+    alert("Your about to rewrite new data, proceed with caution.");
     let date_ = new Date();
     let start_gte = date_.toISOString();
     let platforms_list = ["codechef","leetcode","codeforces","gfg"]; // For testing sake, can add all the platform names.
@@ -256,11 +257,15 @@ function LogoutUser(){
     })
 }
 
-// WeekelyScrapper();
-// cron.schedule("",()=>{
-//     WeekelyScrapper();
-// });
+function WeekelyScrapperConfirmationDialogue(){
+    var option = prompt("About to run the Weekelyscrapping method, Choose action (y/n)?");
+    if(option == "y" || option == 'Y'){
+        WeekelyScrapper();
+    }
 
+}
+
+// WeekelyScrapperConfirmationDialogue();
 
 // handling all the button click events.
 // const dbBtn = document.getElementById("db-btn");
