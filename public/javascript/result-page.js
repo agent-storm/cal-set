@@ -111,12 +111,13 @@ async function CreateEvents() {
   console.log("EventCreator");
   Object.keys(dataJson).forEach((platform)=>{
     dataJson[platform].forEach((contest)=>{
-        const utcstartDate = new Date(contest["Start"]["seconds"]*1000);
-        const utcendDate = new Date(contest["End"]["seconds"]*1000);
+        const utcstartDate = new Date(contest["Start"]["seconds"]*1000 + (5.5 * 60 * 60 * 1000));
+        const utcendDate = new Date(contest["End"]["seconds"]*1000 + (5.5 * 60 * 60 * 1000));
         // const localstartDate = utcstartDate.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }).toISOString();
         // const localendDate = utcendDate.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
         const localstartDate = utcstartDate.toISOString();
         const localendDate = utcendDate.toISOString();
+        
         const event = {
           'summary': `${(contest["Platform"].split(".")[0]).charAt(0).toUpperCase() + (contest["Platform"].split(".")[0]).slice(1)}-${contest["Contest"]}`,
           'location': '',
