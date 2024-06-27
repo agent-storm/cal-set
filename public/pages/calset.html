@@ -12,7 +12,7 @@
     
     <script src="../javascript/calset-helper.js" ></script>
     <script src="../javascript/cal-set-main-page.js" type="module" defer></script>
-    <script type="module">
+    <!-- <script type="module">
         import {getAuth} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
         const auth = getAuth();
         // console.log(auth.currentUser);
@@ -21,7 +21,7 @@
                 window.location = "./login-page.html";
             } 
         });
-    </script>
+    </script> -->
 
 
     <link rel="stylesheet" href="../css/calset-page.css" >
@@ -36,9 +36,9 @@
     <!-- <button id="logout-btn" onclick="SignOutPressed()">Logout</button> -->
     <div class="sidebar-div">
         <div class="sidebar-options-div">
-            <div class="logout-btn-div"><button class="logout-btn sidebar-option-div" id="logout-btn">Logout</button></div>
-            <div class="logout-btn-div"><button class="logout-btn sidebar-option-div" id="aboutme-btn">About me</button></div>
-            <div class="logout-btn-div"><button class="logout-btn sidebar-option-div" id="logout-btn">Contact</button></div>
+            <div class="logout-btn-div  sidebar-option-div"><button class="logout-btn sidebar-option-btn" id="logout-btn">Logout</button></div>
+            <div class="aboutme-btn-div  sidebar-option-div"><button class="aboutme-btn sidebar-option-btn" id="aboutme-btn" onclick="PageRedirector('about-page')">About me</button></div>
+            <div class="contact-btn-div  sidebar-option-div"><button class="contact-btn sidebar-option-btn" id="logout-btn"  onclick="PageRedirector('about-page')">Contact</button></div>
         </div>
     </div> 
     <div class="main-container-div">

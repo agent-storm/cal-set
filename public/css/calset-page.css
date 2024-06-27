@@ -58,7 +58,11 @@ body{
     align-items: center;
 }
 
-.logout-btn {
+.sidebar-option-div {
+    height: 8vh;
+    width: 8vw;
+}
+.sidebar-option-btn {
     height: 8vh;
     width: 8vw;
     background-color: var(--options-button-color);
@@ -68,7 +72,7 @@ body{
     font-size: 1.2vw;
     transition:0.5s;
 }
-.logout-btn:hover {
+.sidebar-option-btn:hover {
     background-color: var(--hover-button-color);
 }
 .main-container-div {
@@ -222,6 +226,10 @@ body{
 }
 
 @media(max-width:1000px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
     .main-container-div {
         height:100%;
         width:100%;
@@ -229,8 +237,30 @@ body{
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        margin-top: 10vh;
+        margin-top: 1vh;
     }
+    .sidebar-div {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    .sidebar-options-div {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin: 0;
+    }
+    .sidebar-option-div {
+        height: 100%;
+        width: 100%;
+    }
+    .sidebar-option-btn {
+        width: 100%;
+        margin-left: 1vw;
+        margin-right: 1vw;
+        font-size: 4vw;
+    }
+    
     .options-container-div {
         display: flex;
         flex-direction: column;

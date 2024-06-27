@@ -46,3 +46,15 @@ function DescUpdate() {
     desc_box.innerHTML = desc;
 
 }
+
+function PageRedirector(destnationPage) {
+    switch(destnationPage){
+        case "about-page":
+            window.location = "https://srinith-portfolio.web.app";
+            break;
+        case "contact-page":
+            window.location = "https://srinith-portfolio.web.app";
+            break;
+
+    }
+}
