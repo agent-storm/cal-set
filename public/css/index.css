@@ -28,7 +28,7 @@
 }
   
 body{
-    cursor: url('../assets/icons8-select-cursor-35.png'), auto;
+    cursor: url('/assets/icons8-select-cursor-35.png'), auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,7 +76,7 @@ body{
     
 }
 .calset-page-button {
-    cursor: url('../assets/icons8-select-cursor-35.png'), auto;
+    cursor: url('/assets/icons8-select-cursor-35.png'), auto;
     border:none;
     height: 8vh;
     width: 15vw;
@@ -88,7 +88,7 @@ body{
     transition: 0.5s;
 }
 .calset-page-button:hover {
-    cursor: url('../assets/icons8-select-cursor-35.png'), auto;
+    cursor: url('/assets/icons8-select-cursor-35.png'), auto;
     box-shadow: 8px 8px;
     background-color: var(--hover-button-color);
     color: black;
@@ -243,6 +243,9 @@ body{
         font-size: 4vw;
     }
     .contact-me-title {
-        
+        font-size: 5vw;
+    }
+    .contact-icon {
+        height: 6vh;
     }
 }

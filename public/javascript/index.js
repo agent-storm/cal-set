@@ -1,4 +1,4 @@
 
 function CalsetPage(){
-    window.location = "./pages/calset.html";
+    window.location = "/pages/calset.html";
 }
