@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "firebase": "^11.0.0",
+    "firebase-cli": "^1.2.0",
+    "firebase-tools": "^13.22.1",
     "node-cron": "^3.0.3"
   }
 }
