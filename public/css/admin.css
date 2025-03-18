@@ -1,0 +1,66 @@
+body {
+    cursor: url('../assets/icons8-select-cursor-35.png'), auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2F2235;
+}
+
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-main-div {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #60495A;
+    flex-direction: column;
+    height:80vh;
+    width:40vw;
+    margin-top: 10vh;
+    border-radius: 30px;
+}
+.title-div {
+    font-size: 2vw;
+}
+.admin-options {
+    flex-direction: column;
+    width: 100%;
+}
+
+.option {
+    height: 5.5vh;
+    width:85%;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    border:none;
+    border-radius: 30px;
+    background-color: #A9ACA9;
+    transition: 0.5s ;
+    font-size: 2.5vh;
+    text-align: center;
+}
+
+.option:hover {
+    cursor: url('../assets/icons8-select-cursor-35.png'), auto;
+    box-shadow: 8px 8px;
+    background-color: #da1154;
+}
+
+
+@media (max-width:1000px) {
+    .admin-main-div {
+        width: 80vw;
+    }
+    .title-div {
+        font-size: 5vw;
+    }
+}

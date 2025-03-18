@@ -55,6 +55,6 @@ function PageRedirector(destnationPage) {
         case "contact-page":
             window.location = "https://srinith-portfolio.web.app";
             break;
-
+            
     }
 }

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calset-Admin</title>
+    <script src="../javascript/firebase-init.js" type="module"></script>
+    <script src="../javascript/admin.js" type="module"></script>
+    <link rel="stylesheet" href="../css/admin.css" >
+    <style>
+        #content {
+            display: none;
+        }
+        /* #loading-div {
+            display: none;
+        } */
+    </style>
+</head>
+<body>
+    <div id="loading-div"class=" flex-center">Loading</div>
+    <div class="admin-main-div" id="content">
+        <div class="title-div flex-center">OPTIONS</div>
+        <div class="admin-options flex-center ">
+            <button class="option" id="db-update">Update DB</button>
+            <button class="option" id="add-superuser">Add Superuser</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        import { WeekelyScrapperConfirmationDialogue, addSuperUser } from "../javascript/admin.js"
+        const auth = getAuth();
+        const db = getFirestore();
+
+        const content = document.getElementById("content");
+        const loading = document.getElementById("loading-div");
+
+        auth.onAuthStateChanged(async (user) => {
+            if (!user) {
+                window.location = "./login-page.html"; // Redirect if not logged in
+                return;
+            }
+            try {
+                // Get all super user emails
+                const superUsersRef = collection(db, "super_users");
+                const superUsersSnap = await getDocs(superUsersRef);
+                const superUserEmails = superUsersSnap.docs.map(doc => doc.data().email);
+
+                if (superUserEmails.includes(user.email)) {
+                    console.log("Access granted to super user:", user.email);   
+                    loading.style.display = "none"; // Hide loading message
+                    content.style.display = "block"; // Show content
+                } else {
+                    console.log("Access denied. Redirecting...");
+                    window.location = "./login-page.html"; // Redirect if not a super user
+                }
+            } catch (error) {
+                console.error("Error checking super user:", error);
+                window.location = "./login-page.html"; // Redirect on error
+            }
+        });
+
+        document.getElementById("db-update").addEventListener('click', WeekelyScrapperConfirmationDialogue)
+        document.getElementById("add-superuser").addEventListener('click', addSuperUser)
+    </script>
+</body>
+</html>
