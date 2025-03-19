@@ -84,9 +84,25 @@ body{
     flex-direction: column;
     height:85vh;
     width:80vw;
-    margin-top: 10vh;
+    /* margin-top: 10vh; */
     border-radius: 30px;
 }
+.title-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    margin-top: 4vh;
+}
+
+.title {
+    font-size: 10vh;
+    color: #007785;
+    font-weight: 900;
+    letter-spacing: 1vw;
+}
+
 .options-container-div {
     display: flex;
     flex-direction: row;
@@ -94,7 +110,6 @@ body{
     width: 98%;
     margin-top:1vh;
     /* margin-bottom: 1vh; */
-    
 }
 .options-div {
     height:100%;
@@ -168,7 +183,25 @@ body{
     overflow-y: scroll;
     height: 100%;
     width: 100%;
+    /* padding-right: 10px; */
+}
 
+/* For WebKit browsers (Chrome, Safari, newer Edge) */
+.preset-options-list::-webkit-scrollbar {
+width: 6px; /* Adjust the width for a thinner scrollbar */
+}
+
+.preset-options-list::-webkit-scrollbar-track {
+background-color: transparent; /* Make the track transparent */
+}
+
+.preset-options-list::-webkit-scrollbar-thumb {
+background-color: #002b35; /* Set the thumb color */
+border-radius: 3px; /* Slightly round the corners */
+}
+
+.preset-options-list::-webkit-scrollbar-thumb:hover {
+background-color: #001f28; /* Darker color on hover */
 }
 
 .desc-gobtn-div {

@@ -12,7 +12,7 @@
     <script src="../javascript/calset-nonmodule.js" defer></script>
     <script src="../javascript/calset-helper.js" ></script>
 
-    <script type="module">
+    <!-- <script type="module">
         import {getAuth} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
         const auth = getAuth();
         auth.onAuthStateChanged((user)=>{
@@ -20,7 +20,7 @@
                 window.location = "./login-page.html";
             } 
         });
-    </script>
+    </script> -->
 
     <link rel="stylesheet" href="../css/calset-page.css" >
     <link rel="icon" type="image/x-icon" href="../assets/icon-512-maskable.png">
@@ -39,6 +39,11 @@
         </div>
     </div> 
     <div class="main-container-div">
+        <div class="title-div">
+            <span class="title">
+                CAL-SET
+            </span> 
+        </div>
         <div class="options-container-div">
             <div class="options-div timeframe-options-div">
                 <div class="options-title-div">TIMEFRAME</div>
